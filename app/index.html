@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="আল-ইত্তিহাদ ৫২">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://script.google.com https://*.googleusercontent.com; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://script.google.com https://*.googleusercontent.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <title>আল-ইত্তিহাদ ৫২</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
@@ -19,11 +19,23 @@
 <body>
 <div id="w"><div class="c"><div class="o"><i></i><img src="icon-192.png" alt=""></div><h1>আল-ইত্তিহাদ ৫২</h1><p class="a">الاتحاد</p><p class="m" id="m"></p><div class="d"><b></b><b></b><b></b></div></div></div>
 <script>
-(function(){var u=window.IT_APP_URL;var w=document.getElementById('w');
-if(!u){document.getElementById('m').textContent='অ্যাপ এখনো চালু হয়নি';return}
-if(!navigator.onLine){document.getElementById('m').textContent='📶 ইন্টারনেট নেই — সংযোগ পেলে নিজে থেকেই খুলবে';addEventListener('online',function(){location.reload()});return}
-var f=document.createElement('iframe');f.src=u+'';f.allow='clipboard-write';f.title='আল-ইত্তিহাদ ৫২';f.onload=function(){setTimeout(function(){w.className='out'},2200)};document.body.appendChild(f);
+(function(){var u=window.IT_APP_URL,w=document.getElementById('w'),m=document.getElementById('m');
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(function(){});
+function hasCopy(){try{return !!localStorage.getItem('ito')}catch(e){return false}}
+function goOff(){location.replace('offline.html')}
+if(!u){m.textContent='অ্যাপ এখনো চালু হয়নি';return}
+/* নেট নেই → ফোনে রাখা অফলাইন কপি (offline.html নিজেই বলে দেয় কপি না থাকলে কী করতে হবে) */
+if(!navigator.onLine){goOff();return}
+var got=false;
+/* অ্যাপ (Google-এর ফ্রেম) অনলাইনে থাকার সময় নিজের এনক্রিপ্ট করা কপি এখানে রেখে যায়; শুধু Google-এর ফ্রেম থেকেই নেওয়া হয় */
+addEventListener('message',function(e){if(!/^https:\/\/[a-z0-9-]+\.googleusercontent\.com$/.test(e.origin))return;var d=e.data||{};
+ try{if(d.type==='it-off'&&d.blob&&d.key&&d.roll){got=true;localStorage.setItem('ito',JSON.stringify({roll:String(d.roll),name:String(d.name||''),at:d.at,blob:d.blob,key:d.key}));
+   var lp=JSON.parse(localStorage.getItem('ipg:'+d.roll)||'null');if(lp&&lp.p&&lp.ts&&e.source)e.source.postMessage({type:'it-offprog',roll:String(d.roll),ts:lp.ts,p:lp.p},e.origin)}
+  else if(d.type==='it-offclear'){Object.keys(localStorage).forEach(function(k){if(k==='ito'||k.indexOf('ipg:')===0)localStorage.removeItem(k)})}}catch(x){}});
+var f=document.createElement('iframe');f.src=u+'';f.allow='clipboard-write';f.title='আল-ইত্তিহাদ ৫২';f.onload=function(){setTimeout(function(){w.className='out'},2200)};document.body.appendChild(f);
+addEventListener('offline',function(){if(!got&&w.className!=='out')goOff()});
+/* নেট খুব দুর্বল হলে: অপেক্ষার মাঝেই অফলাইন কপি খোলার সুযোগ */
+setTimeout(function(){if(w.className!=='out'&&hasCopy()){m.innerHTML='🐢 নেট খুব ধীর — অপেক্ষা করুন, অথবা <button id="go" style="font:inherit;border:0;border-radius:10px;padding:6px 12px;background:#7a1f2b;color:#fff">📴 অফলাইন কপি খুলুন</button>';document.getElementById('go').onclick=goOff}},20000);
 })();
 </script>
 </body>
