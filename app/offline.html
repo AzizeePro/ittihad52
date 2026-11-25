@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#7a1f2b"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'"><link rel="manifest" href="manifest.json"><script>window.IT_OFFLINE=true;</script>
 <title>আল-ইত্তিহাদ ৫২</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Anek+Bangla:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Anek+Bangla:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700&family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* VOICE: শান্ত, পাণ্ডিত্যপূর্ণ, কিন্তু ঝকঝকে প্রিমিয়াম অ্যাপ
    IDEA: হাতে বাঁধানো দিওয়ানের পাতা আর বিভাগের রুটিন-বোর্ড — দুটো এক অ্যাপে
@@ -43,7 +43,7 @@ bdi.ar{font-size:1.12em}
 .demo button{border:1px solid #6d4a2c;background:transparent;border-radius:999px;padding:5px 14px;min-height:36px;color:#f6e7c8}
 .demo button.on{background:#c9a24a;color:#1b1114;border-color:#c9a24a;font-weight:700}
 /* student shell */
-.wrap{max-width:540px;margin:0 auto;min-height:calc(100vh - 50px);background:var(--bg);position:relative;display:flex;flex-direction:column}
+.wrap{max-width:540px;margin:0 auto;min-height:100vh;min-height:100dvh;background:var(--bg);position:relative;display:flex;flex-direction:column}
 @media(min-width:700px){.wrap{box-shadow:0 0 0 1px var(--line),0 30px 80px -40px rgba(0,0,0,.35);margin-block:18px;border-radius:24px;overflow:clip;min-height:820px}}
 .top{display:flex;align-items:center;gap:10px;padding:12px 14px;background:linear-gradient(160deg,var(--brand),var(--brand2));color:#fff;position:sticky;top:0;z-index:30}
 .logo{width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.14);display:grid;place-items:center;font:700 19px var(--ar);color:#f3d58a;border:1px solid rgba(243,213,138,.4)}
@@ -52,8 +52,8 @@ bdi.ar{font-size:1.12em}
 .top .ttl span{font-size:12.5px;opacity:.85}
 .ib{width:40px;height:40px;border-radius:12px;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:17px;display:grid;place-items:center;position:relative}
 .ib i{position:absolute;top:6px;right:7px;width:8px;height:8px;border-radius:50%;background:#f3d58a}
-main{flex:1;padding:12px 12px 90px}
-.bnav{position:sticky;bottom:0;z-index:30;display:grid;grid-template-columns:repeat(5,1fr);background:var(--card);border-top:1px solid var(--line);padding:4px 4px calc(4px + env(safe-area-inset-bottom))}
+main{flex:1;padding:12px 12px calc(84px + env(safe-area-inset-bottom))}
+.bnav{position:fixed;bottom:0;left:0;right:0;margin:0 auto;max-width:540px;box-sizing:border-box;height:calc(62px + env(safe-area-inset-bottom));align-items:stretch;z-index:30;display:grid;grid-template-columns:repeat(5,1fr);background:var(--card);border-top:1px solid var(--line);padding:4px 4px calc(4px + env(safe-area-inset-bottom))}
 .bnav button{border:0;background:none;padding:6px 0;min-height:52px;display:flex;flex-direction:column;align-items:center;gap:1px;font-size:12px;color:var(--mute);border-radius:12px}
 .bnav button span{font-size:19px;line-height:1.2}
 .bnav button.on{color:var(--brand);font-weight:700;background:var(--chip)}
@@ -379,7 +379,9 @@ body{-webkit-tap-highlight-color:transparent;overscroll-behavior-y:none;touch-ac
 .bayt{content-visibility:auto;contain-intrinsic-size:auto 420px}.tcard{content-visibility:auto;contain-intrinsic-size:auto 120px}
 .top,.bnav,.ptabs{transform:translateZ(0)}
 .lay.blur>:not(h4),.lay.blur>:not(h4) *{filter:none!important;color:transparent!important;text-shadow:0 0 9px rgba(60,30,30,.55)}
-.sheet,.modal .box,#adpane .scroll,.scroll{-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.sheet,.modal .box{-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+/* আড়াআড়ি স্ক্রলের বাক্স: ওপর-নিচে আঙুল টানলে পুরো পাতা সরে (আগে এখানে আটকে যেত) */
+.scroll,.hs,.ptabs,.ad-nav,.rp-tabs{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;overscroll-behavior-y:auto;touch-action:pan-x pan-y}
 button,.btn,.chip,.ib,.ib2,.sw,.seg3 button,.ad-nav button,.bnav button,label.btn{transition:transform .14s ease,background-color .2s,box-shadow .2s,color .2s,border-color .2s;user-select:none;-webkit-user-select:none}
 button:active,.btn:active,.chip:active,label.btn:active,.ad-nav button:active,.bnav button:active{transform:scale(.96)}
 .btn{box-shadow:0 6px 16px -10px rgba(122,31,43,.7),inset 0 1px 0 rgba(255,255,255,.14);letter-spacing:.01em}
@@ -490,6 +492,41 @@ details.alt summary{cursor:pointer;font-size:13.5px;font-weight:600;color:var(--
 #tour .t-dots{display:flex;gap:4px}#tour .t-dots i{width:7px;height:7px;border-radius:9px;background:var(--line)}#tour .t-dots i.on{width:18px;background:var(--gold,#c9a24a)}
 #tour .t-b{align-items:center;gap:6px}
 @keyframes tIn{from{opacity:0;transform:translateX(-50%) translateY(8px)}}
+
+/* পড়ার ভাসমান বোতাম ও প্যানেল */
+#rfab{position:fixed;z-index:40;right:max(14px,calc(50vw - 270px + 14px));bottom:calc(76px + env(safe-area-inset-bottom));width:52px;height:52px;border-radius:50%;border:0;background:linear-gradient(145deg,var(--brand),var(--brand2));color:#f6e7c8;font-size:22px;box-shadow:0 10px 24px -8px rgba(0,0,0,.5),0 0 0 3px color-mix(in srgb,var(--gold) 55%,transparent);display:grid;place-items:center;cursor:pointer;transition:transform .25s ease}
+#rfab span{transition:transform .3s ease;display:block;line-height:1}
+#rfab.on span{transform:rotate(90deg)}
+#rfab:active{transform:scale(.92)}
+#rpanel{position:fixed;z-index:39;left:50%;bottom:calc(136px + env(safe-area-inset-bottom));width:min(520px,calc(100% - 16px));max-height:calc(100vh - 210px);overflow:auto;overscroll-behavior:contain;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:20px;padding:14px 14px 16px;box-shadow:0 -10px 40px -12px rgba(0,0,0,.45);transform:translate(-50%,16px);opacity:0;transition:transform .22s ease,opacity .22s ease}
+#rpanel.show{transform:translate(-50%,0);opacity:1}
+.rp-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.rp-h b{font-family:var(--hd);font-size:16px}
+.rp-g{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.rp-t{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:14px;padding:8px 4px;font-size:12px;display:flex;flex-direction:column;align-items:center;gap:2px;min-height:64px}
+.rp-t span{font-size:18px;line-height:1.2}.rp-t.on{background:var(--chip);border-color:var(--brand);color:var(--brand);font-weight:700}
+.rp-l{font-size:12.5px;color:var(--mute);margin:12px 0 6px;font-weight:600}
+.rp-sz{justify-content:space-between;align-items:center}
+.rp-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.rp-tabs button{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:8px 4px;font-size:12.5px}.rp-tabs button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+@media(max-width:360px){.rp-g{grid-template-columns:repeat(2,1fr)}.rp-tabs{grid-template-columns:repeat(2,1fr)}}
+@media print{#rfab,#rpanel{display:none!important}}
+
+/* অনুশীলনের খেলা */
+.pg-stat{gap:6px 14px;flex-wrap:wrap;font-size:13px;color:var(--mute);margin-top:8px}.pg-stat b{color:var(--ink)}
+.pg-prog{margin-top:8px}
+.pg-big{font-size:38px;text-align:center;margin:6px 0 10px;line-height:1.5}.pg-mid{font:600 18px/1.6 var(--ui);text-align:center;margin:6px 0 12px}
+.pg-mis{font-size:calc(var(--arsize,30px)*.8);text-align:center;line-height:1.9;margin:6px 0 12px}
+.pg-gap{display:inline-block;min-width:70px;border-bottom:3px solid var(--gold);color:var(--gold);text-align:center}
+.pg-opts{display:grid;gap:8px}.pg-opts button{border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:14px;padding:11px 14px;text-align:start;font:500 15px/1.5 var(--ui);transition:transform .12s,background .2s,border-color .2s}
+.pg-opts.ar-o button{font-family:var(--ar);font-size:22px;text-align:right;direction:rtl}
+.pg-opts button:not(:disabled):active{transform:scale(.98)}
+.pg-opts button.right{background:color-mix(in srgb,var(--ok) 16%,var(--card));border-color:var(--ok)}.pg-opts button.wrong{background:color-mix(in srgb,var(--bad) 14%,var(--card));border-color:var(--bad)}
+.pg-slots{min-height:52px;direction:rtl}.pg-pool{direction:rtl}.pg-slots button,.pg-pool button{font-size:22px}
+.pg-fb{margin-top:12px;padding:10px 12px;border-radius:12px;animation:pgIn .25s ease}.pg-fb.ok{background:color-mix(in srgb,var(--ok) 12%,var(--card))}.pg-fb.no{background:color-mix(in srgb,var(--bad) 10%,var(--card))}
+.pg-nav{margin-top:12px}
+.pg-end .pg-trophy{font-size:54px;text-align:center;animation:pgIn .4s ease}
+.pg-why{border-inline-start:3px solid var(--gold);padding:4px 10px;margin:6px 0;font-size:14px}
+@keyframes pgIn{from{transform:translateY(6px) scale(.98);opacity:0}to{transform:none;opacity:1}}
+body.inpoem main{padding-bottom:calc(150px + env(safe-area-inset-bottom))}
 .lg{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at 80% 10%,rgba(226,193,113,.25),transparent 40%),linear-gradient(160deg,#7a1f2b,#3a0f17)}
 .lgc{background:var(--card);border-radius:24px;padding:26px 22px;width:min(380px,100%);display:grid;gap:10px;text-align:center;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
 .lgc h1{font-size:24px}.lgc input{width:100%;text-align:center;font-size:18px;padding:12px}.lgc .btn{width:100%;min-height:48px;font-size:16px}
@@ -646,6 +683,12 @@ const rtAny=()=>["routine","exams","holidays"].some(k=>acc(k)!=="off");
 /* স্ক্রল চলার সময় পুরো পাতা নতুন করে আঁকলে আটকে যায় — তাই আঙুল থামলে আঁকা, আর জায়গা ঠিক রাখা */
 let LASTMOVE=0;["scroll","touchmove","wheel","touchstart"].forEach(ev=>addEventListener(ev,()=>{LASTMOVE=Date.now()},{passive:true,capture:true}));
 function whenIdle(fn){const t=()=>{if(Date.now()-LASTMOVE<1200)return setTimeout(t,500);fn()};t()}
+/* প্রতিটা পাতার নিজের স্ক্রল-অবস্থান মনে থাকে — ফিরে এলে আগের জায়গায় */
+const SCM={};function scKey(){return S.view+(S.view==="course"?":"+S.course+":"+(S.poem?"p:"+S.tab:"c"):"")}
+function memo(fn){SCM[scKey()]=window.scrollY;fn();render();window.scrollTo(0,SCM[scKey()]||0)}
+/* আড়াআড়ি ট্যাব/চিপের সারি: নতুন করে আঁকলেও আগের স্ক্রল থাকে, বাছাই করাটা চোখের সামনে থাকে */
+function hsSave(){return[...document.querySelectorAll("#main .hs,#main .ptabs,#main [data-hs]")].map(e=>e.scrollLeft)}
+function hsRestore(v){const els=[...document.querySelectorAll("#main .hs,#main .ptabs,#main [data-hs]")];els.forEach((e,i)=>{if(v[i]!==undefined)e.scrollLeft=v[i];const on=e.querySelector(".on");if(on){const a=on.offsetLeft,b=a+on.offsetWidth,l=e.scrollLeft,w=e.clientWidth;if(a<l)e.scrollLeft=a-8;else if(b>l+w)e.scrollLeft=b-w+8}})}
 function keepScroll(fn){const y=window.scrollY;fn();if(Math.abs(window.scrollY-y)>2)window.scrollTo(0,y)}
 function render(){
  if(S.view==="routine"&&!rtAny())S.view="home";
@@ -656,13 +699,17 @@ function render(){
  const inPoem=S.view==="course"&&S.poem;
  $("#top").innerHTML=S.view==="course"?`<button class="ib" data-back="1" aria-label="পেছনে">←</button><div class="ttl"><b>${inPoem?"মুআল্লাকাতু যুহাইর":esc(CI(S.course).bn)}</b><span class="en">${esc(CI(S.course).code)}</span></div>${inPoem&&acc("offline")!=="off"?`<button class="ib" data-off="1" aria-label="অফলাইনে রাখো">${S.saved?"✅":"💾"}</button>`:""}<button class="ib" data-set="1" aria-label="সেটিং">⚙️</button>`
  :`<div class="logo"><img src="${LOGO}" alt=""></div><div class="ttl"><b>আল-ইত্তিহাদ ৫২</b><span class="en">Arabic · CU · 2nd Sem</span></div><button class="ib" data-refresh="1" aria-label="রিফ্রেশ">🔄</button>${acc("notices")==="ok"?`<button class="ib" data-go="notices" aria-label="নোটিস">🔔${S.notices.length||evNotices().length?"<i></i>":""}</button>`:""}<button class="ib" data-set="1" aria-label="সেটিং">⚙️</button>`;
- const M=$("#main");
+ const M=$("#main"),hsv=hsSave();
  ({home:vHome,courses:vCourses,course:vCourse,materials:vMaterials,qbank:vQbank,teachers:vTeachers,photocard:vPhotocard,profile:vProfile,routine:vRoutine,words:vWords,me:vMe,notices:vNotices,plans:vPlans})[S.view](M);
- look()}
-function look(){
+ hsRestore(hsv);look();if(typeof fabSync==="function")fabSync()}
+/* পড়ার পছন্দ (ফন্ট, আকার, থিম, হরকত, সাজানো) এই ফোনে মনে থাকে — অ্যাপ বন্ধ করে খুললেও */
+const PREFK="itpref",PREFS=["font","size","theme","side","harakat"];
+(function(){try{const p=JSON.parse(localStorage.getItem(PREFK)||"{}");PREFS.forEach(k=>{if(k in p)S[k]=p[k]});if(!["Amiri","Noto Naskh Arabic","Scheherazade New"].includes(S.font))S.font="Amiri";S.size=Math.min(44,Math.max(22,+S.size||30))}catch(e){}})();
+function prefSave(){try{const o={};PREFS.forEach(k=>o[k]=S[k]);localStorage.setItem(PREFK,JSON.stringify(o))}catch(e){}}
+function look(){prefSave();
  document.body.className=[S.theme,S.guard?"guard":"",S.noprint?"noprint":""].join(" ");
  document.documentElement.style.setProperty("--arsize",S.size+"px");
- document.documentElement.style.setProperty("--ar",`'${S.font}','Amiri','Noto Naskh Arabic','Noto Sans Bengali',serif`);
+ document.documentElement.style.setProperty("--ar",`'${S.font}','Amiri','Noto Naskh Arabic','Scheherazade New','Noto Sans Bengali',serif`);
  wmApply($("#wm"),wmWhere()==="all"||(wmWhere()==="read"&&READV.includes(S.view)))}
 /* জলছাপ: শুধু ব্যবহারকারীর নিজের আইডি ও নাম, খুব হালকা। মোড (অ্যাডমিন): off · read (পড়ার জায়গায়) · all (পুরো অ্যাপে) */
 const READV=["course","materials","words","qbank"];
@@ -721,7 +768,7 @@ function vCourse(M){
 const PT=[["poem","📜 কবিতা"],["parts","🧭 কাঠামো"],["vocab","📚 শব্দভান্ডার"],["tarkib","🧩 তারকিব"],["balagha","✨ বালাগাত"],["meter","🎵 ছন্দ"],["variants","⚖️ পাঠভেদ"],["context","🏜️ প্রেক্ষাপট"],["poet","👤 কবি"],["memo","🧠 মুখস্থ"],["practice","🎯 অনুশীলন"],["flash","🃏 ফ্লাশকার্ড"],["qs","❓ প্রশ্ন"],["notes","📝 নোট"]];
 function vPoem(M){
  const vis=PT.filter(t=>acc(t[0])!=="off"&&!(t[0]==="variants"&&!VAR.length&&!ALT.length));if(!vis.find(t=>t[0]===S.tab))S.tab=vis[0]?vis[0][0]:"poem";
- M.innerHTML=`<div class="phero"><div class="ar">${esc(TMETA.title_ar||"")}</div><h2>${esc(TMETA.title_bn||"")}</h2><div class="meta">${(m=>[m.poet,m.era,m.bahr&&"বাহর: "+m.bahr,m.qafiya&&"কাফিয়া: "+m.qafiya,m.range].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join(""))(TMETA.meta||{})}</div></div>
+ M.innerHTML=`<div class="phero"><div class="ar">${esc(TMETA.title_ar||"")}</div><h2>${esc(TMETA.title_bn||"")}</h2><div class="meta">${(m=>[m.poet,m.era,m.bahr&&"বাহর: "+m.bahr,m.qafiya&&"কাফিয়া: "+m.qafiya,B.length?`বাইত ${bn(B[0].n)}–${bn(B[B.length-1].n)}`:m.range].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join(""))(TMETA.meta||{})}</div></div>
  <nav class="ptabs">${vis.map(t=>`<button data-tab="${t[0]}" class="${S.tab===t[0]?"on":""}">${t[1]}${proTag(t[0])}</button>`).join("")}</nav>
  <div id="tool">${toolHTML()}</div><div id="pane"></div>`;
  pane()}
@@ -766,13 +813,66 @@ let fi=0;
 const deck=()=>vocabIds().sort((a,b)=>(S.star[b]?1:0)-(S.star[a]?1:0)||(S.knownW.has(a)?1:0)-(S.knownW.has(b)?1:0));
 function flash(target){const p=target||$("#pane");const d=deck();fi%=d.length;const id=d[fi];
  p.innerHTML=`<div class="card"><h3>🃏 ফ্লাশকার্ড <small>${bn(fi+1)}/${bn(d.length)} · শেখা ${bn(S.knownW.size)}</small></h3><div class="fc" id="fc"><div class="in"><div class="f">${esc(S.harakat?surf(id):strip(surf(id)))}</div><div class="b"><div><b style="font:700 21px var(--hd)">${esc(W[id].bn)}</b><div class="mute">${esc(W[id].en)}</div><div class="ar" style="font-size:20px;margin-top:4px">${esc(W[id].ar)}</div>${W[id].th["মাদ্দাহ"]?`<div class="small mute" style="margin-top:4px">মাদ্দাহ <bdi class="ar">${esc(W[id].th["মাদ্দাহ"])}</bdi></div>`:""}</div></div></div></div><p class="hint" style="text-align:center">কার্ডে চাপলে উল্টাবে · ⭐ দেওয়া শব্দ আগে আসে</p><div class="row" style="justify-content:center"><button class="btn ghost" data-fl="0">😕 পারি না</button><button class="btn" data-fl="1">✅ পারি</button></div></div>`}
-const pr={q:0,arr:[],pk:[]};
-function practice(){const ids=vocabIds();const id=ids[pr.q%ids.length];
- const opts=[id,...ids.filter(x=>x!==id).sort(()=>Math.random()-.5).slice(0,3)].sort(()=>Math.random()-.5);
- const words=B[0].s1.map(x=>x[0]);if(!pr.arr.length){pr.arr=[...words].sort(()=>Math.random()-.5);pr.pk=[]}
- $("#pane").innerHTML=`<div class="card mcq"><h3>🎯 শব্দার্থ বলুন <small>সঠিক ${bn(S.mcq)}</small></h3><p class="ar" style="font-size:36px;text-align:center;margin:4px 0">${esc(surf(id))}</p>${opts.map(o=>`<button data-mc="${o}" data-r="${o===id?1:0}">${esc(W[o].bn)}</button>`).join("")}<button class="btn sm ghost" data-next="1" style="margin-top:6px">পরের প্রশ্ন →</button></div>
- <div class="card"><h3>🧩 বাইত সাজান <small>প্রথম বাইতের প্রথম মিসরা</small></h3><div class="slots">${pr.pk.map((w,i)=>`<button data-un="${i}">${esc(w)}</button>`).join("")}</div><div class="pool">${pr.arr.map((w,i)=>pr.pk.includes(w)?"":`<button data-pk="${i}">${esc(w)}</button>`).join("")}</div><div class="row" style="margin-top:8px"><button class="btn sm" data-chk="1">মিলিয়ে দেখুন</button><button class="btn sm ghost" data-re="1">আবার</button></div></div>
- <div class="card"><h3>✍️ শূন্যস্থান</h3><p class="ar" style="font-size:24px;text-align:center">كَأَنَّهَا <span style="border-bottom:2px solid var(--gold);padding:0 32px"> </span> وَشْمٍ فِي نَوَاشِرِ مِعْصَمِ</p><div class="row" style="justify-content:center">${["مَرَاجِعُ","مَرَاجِيعُ","رَوَاجِعُ"].map(x=>`<button class="chip" data-fb="${x==="مَرَاجِيعُ"?1:0}" style="font:22px var(--ar)">${x}</button>`).join("")}</div><p class="small" id="fbm" style="text-align:center"></p></div>`}
+/* ===== অনুশীলন: খেলার মতো — ১০ প্রশ্নের সেশন, পুরো কবিতা আর সব শব্দ থেকে এলোমেলো; সাথে সাথে ঠিক/ভুল, স্কোর, ধারা, আগের/পরের ===== */
+const PGK=()=>"itpq:"+((typeof ME0!=="undefined"&&ME0.roll)||"x");
+const PGM=[["mix","🎲 সব মিলিয়ে"],["word","🔤 শব্দার্থ"],["bayt","📜 বাইত"],["tr","🌐 অনুবাদ"]];
+const PG={mode:"mix",qs:[],i:0,st:[],fin:false};
+const rnd=a=>a[Math.floor(Math.random()*a.length)],shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const arw=w=>S.harakat?w:strip(w),misra=t=>t.map(x=>arw(x[0])).join(" ");
+function pgRecent(){try{return JSON.parse(localStorage.getItem(PGK())||"[]")}catch(e){return[]}}
+function pgRemember(keys){try{localStorage.setItem(PGK(),JSON.stringify([...pgRecent(),...keys].slice(-220)))}catch(e){}}
+const PGEN={
+ word(){const ids=vocabIds(),id=rnd(ids),seen=new Set([W[id].bn]);const o=shuf(ids).filter(x=>!seen.has(W[x].bn)&&seen.add(W[x].bn)).slice(0,3);
+  return{key:"w:"+id,cat:"word",title:"শব্দটির অর্থ কী?",q:`<p class="ar pg-big">${esc(arw(surf(id)))}</p>`,opts:shuf([{h:esc(W[id].bn),ok:1},...o.map(x=>({h:esc(W[x].bn)}))]),why:`<bdi class="ar">${esc(surf(id))}</bdi> = ${esc(W[id].bn)}${W[id].en?` · <span class="en">${esc(W[id].en)}</span>`:""}`}},
+ rword(){const ids=vocabIds(),id=rnd(ids),seen=new Set([strip(surf(id))]);const o=shuf(ids).filter(x=>{const k=strip(surf(x));return !seen.has(k)&&seen.add(k)}).slice(0,3);
+  return{key:"r:"+id,cat:"word",title:"এই অর্থের আরবি শব্দ কোনটা?",q:`<p class="pg-mid">«${esc(W[id].bn)}»</p>`,ar:1,opts:shuf([{h:esc(arw(surf(id))),ok:1},...o.map(x=>({h:esc(arw(surf(x)))}))]),why:`${esc(W[id].bn)} = <bdi class="ar">${esc(surf(id))}</bdi>`}},
+ blank(){for(let t=0;t<20;t++){const b=rnd(B),side=Math.random()<.5?"s1":"s2",m=b[side];const cand=m.map((x,j)=>j).filter(j=>W[m[j][1]]&&!/^হরফ/.test(W[m[j][1]].t)&&strip(m[j][0]).length>2);if(!cand.length)continue;
+  const j=rnd(cand),ans=m[j][0],seen=new Set([strip(ans)]);const pool=shuf(TOK).filter(x=>{const k=strip(x[0]);return k.length>2&&Math.abs(k.length-strip(ans).length)<=3&&!seen.has(k)&&seen.add(k)}).slice(0,3);if(pool.length<3)continue;
+  return{key:"b:"+b.n+side+j,cat:"bayt",title:`শূন্যস্থান পূরণ করুন · বাইত ${bn(b.n)}`,q:`<p class="ar pg-mis">${m.map((x,k)=>k===j?'<span class="pg-gap">؟</span>':esc(arw(x[0]))).join(" ")}</p>`,ar:1,opts:shuf([{h:esc(arw(ans)),ok:1},...pool.map(x=>({h:esc(arw(x[0]))}))]),why:`<p class="ar" style="font-size:20px;margin:0">${esc(misra(m))}</p>`}}return null},
+ next(){if(B.length<4)return null;const b=rnd(B),o=shuf(B.filter(x=>x.n!==b.n)).slice(0,3);
+  return{key:"n:"+b.n,cat:"bayt",title:"প্রথম মিসরার পরে কোনটা আসে?",q:`<p class="ar pg-mis">${esc(misra(b.s1))} …</p>`,ar:1,opts:shuf([{h:esc(misra(b.s2)),ok:1},...o.map(x=>({h:esc(misra(x.s2))}))]),why:`বাইত ${bn(b.n)}: <span class="ar">${esc(misra(b.s1))}  ✦  ${esc(misra(b.s2))}</span>`}},
+ tr(){const C=B.filter(x=>x.bn);if(C.length<4)return null;const b=rnd(C),o=shuf(C.filter(x=>x.n!==b.n)).slice(0,3);
+  return{key:"t:"+b.n,cat:"tr",title:"এই বাইতের সঠিক অনুবাদ কোনটা?",q:`<p class="ar pg-mis">${esc(misra(b.s1))}<br>${esc(misra(b.s2))}</p>`,opts:shuf([{h:esc(b.bn),ok:1},...o.map(x=>({h:esc(x.bn)}))]),why:`বাইত ${bn(b.n)}: ${esc(b.bn)}`}},
+ tr2(){const C=B.filter(x=>x.bn);if(C.length<4)return null;const b=rnd(C),o=shuf(C.filter(x=>x.n!==b.n)).slice(0,3);
+  return{key:"u:"+b.n,cat:"tr",title:"এই অনুবাদ কোন বাইতের?",q:`<p class="pg-mid">${esc(b.bn)}</p>`,ar:1,opts:shuf([{h:esc(misra(b.s1)),ok:1},...o.map(x=>({h:esc(misra(x.s1))}))]),why:`বাইত ${bn(b.n)}: <span class="ar">${esc(misra(b.s1))}</span>`}},
+ order(){const C=B.flatMap(b=>[["s1",b],["s2",b]]).filter(([s,b])=>b[s].length>=3&&b[s].length<=7);if(!C.length)return null;const[s,b]=rnd(C),w=b[s].map(x=>x[0]);let sh=shuf(w.map((_,i)=>i));if(sh.every((v,i)=>v===i))sh.reverse();
+  return{key:"o:"+b.n+s,cat:"bayt",kind:"order",title:`শব্দ সাজিয়ে মিসরা বানান · বাইত ${bn(b.n)}`,words:w,pool:sh,why:`<p class="ar" style="font-size:20px;margin:0">${esc(misra(b[s]))}</p>`}}};
+const PGC={mix:["word","rword","blank","next","tr","tr2","order"],word:["word","rword"],bayt:["blank","next","order"],tr:["tr","tr2"]};
+function pgNew(qs){if(qs){PG.qs=qs}else{const rec=new Set(pgRecent()),got=new Set(),out=[];let tries=0;
+  while(out.length<10&&tries<300){tries++;let q=null;try{q=PGEN[rnd(PGC[PG.mode])]()}catch(e){}if(!q||got.has(q.key)||(rec.has(q.key)&&tries<200))continue;got.add(q.key);out.push(q)}PG.qs=out;pgRemember(out.map(q=>q.key))}
+ PG.i=0;PG.fin=false;PG.st=PG.qs.map(q=>({pick:null,ord:[],done:false,ok:false}))}
+function practice(){const p=$("#pane");if(!p)return;if(!B.length){p.innerHTML=`<div class="card"><p class="mute">অনুশীলনের জন্য কোনো বাইত নেই।</p></div>`;return}
+ if(!PG.qs.length)pgNew();const st=S.pst||(S.pst={play:0,ans:0,right:0,best:0,streak:0,bstreak:0});
+ const sc=PG.st.filter(x=>x.ok).length,dn=PG.st.filter(x=>x.done).length,n=PG.qs.length;
+ const head=`<div class="card pg-head"><div class="row" style="justify-content:space-between;gap:8px;flex-wrap:wrap"><div class="hs" data-hs="pgm">${PGM.map(m=>`<button class="chip ${PG.mode===m[0]?"on":""}" data-pg="mode:${m[0]}">${m[1]}</button>`).join("")}</div></div>
+  <div class="row pg-stat"><span>⭐ <b class="num">${bn(sc)}</b>/${bn(n)}</span><span>🔥 ধারা <b class="num">${bn(st.streak||0)}</b></span><span>🏆 সেরা <b class="num">${bn(st.best||0)}</b>/১০</span><span>✔ মোট সঠিক <b class="num">${bn(st.right||0)}</b></span></div>
+  <div class="prog pg-prog"><i style="width:${Math.round(dn/n*100)}%"></i></div></div>`;
+ if(PG.fin){const pc=Math.round(sc/n*100),wr=PG.qs.filter((q,i)=>!PG.st[i].ok);
+  p.innerHTML=head+`<div class="card pg-end"><div class="pg-trophy">${pc>=90?"🏆":pc>=70?"🎉":pc>=40?"💪":"🌱"}</div><h3 style="text-align:center;margin:4px 0">${bn(sc)}/${bn(n)} সঠিক · ${bn(pc)}%</h3><p class="mute" style="text-align:center;margin:0 0 10px">${pc>=90?"অসাধারণ! আপনি তো ওস্তাদ।":pc>=70?"খুব ভালো — আর একটু!":pc>=40?"ভালো চেষ্টা — আরেকবার খেলুন।":"শুরুটা হলো — অনুশীলনেই উন্নতি।"}</p>
+  ${wr.length?`<div class="small" style="font-weight:700;margin:6px 0">যেগুলো ভুল হয়েছে</div>${wr.map(q=>`<div class="pg-why">${q.why}</div>`).join("")}`:""}
+  <div class="row" style="justify-content:center;gap:8px;margin-top:12px;flex-wrap:wrap">${wr.length?`<button class="btn" data-pg="wrong">↻ শুধু ভুলগুলো আবার</button>`:""}<button class="btn ghost" data-pg="retry">একই সেট আবার</button><button class="btn gold" data-pg="new">🎲 নতুন সেশন</button></div></div>`;return}
+ const q=PG.qs[PG.i],s=PG.st[PG.i];let body="";
+ if(q.kind==="order"){body=`<div class="slots pg-slots">${s.ord.map((k,j)=>`<button class="ar" data-pg="un:${j}" ${s.done?"disabled":""}>${esc(arw(q.words[k]))}</button>`).join("")||'<span class="small mute">নিচ থেকে ক্রমানুসারে চাপুন</span>'}</div>
+  <div class="pool pg-pool">${q.pool.map(k=>s.ord.includes(k)?"":`<button class="ar" data-pg="pk:${k}" ${s.done?"disabled":""}>${esc(arw(q.words[k]))}</button>`).join("")}</div>
+  ${s.done?"":`<div class="row" style="margin-top:8px"><button class="btn sm" data-pg="sub" ${s.ord.length===q.words.length?"":"disabled"}>জমা দিন</button><button class="btn sm ghost" data-pg="clr">মুছুন</button></div>`}`}
+ else body=`<div class="pg-opts ${q.ar?"ar-o":""}">${q.opts.map((o,j)=>{const c=s.done?(o.ok?"right":s.pick===j?"wrong":""):"";return `<button class="${c} ${q.ar?"ar":""}" data-pg="pick:${j}" ${s.done?"disabled":""}>${o.h}</button>`}).join("")}</div>`;
+ p.innerHTML=head+`<div class="card pg-q"><div class="small mute">প্রশ্ন ${bn(PG.i+1)}/${bn(n)}</div><h3 style="margin:4px 0 8px">${q.title}</h3>${q.q||""}${body}
+  ${s.done?`<div class="pg-fb ${s.ok?"ok":"no"}"><b>${s.ok?"✅ একদম ঠিক!":"❌ হয়নি"}</b><div>${q.why}</div></div>`:""}
+  <div class="row pg-nav"><button class="btn sm ghost" data-pg="prev" ${PG.i?"":"disabled"}>← আগের</button><span style="flex:1"></span>${PG.i<n-1?`<button class="btn sm ${s.done?"gold":"ghost"}" data-pg="next">${s.done?"পরের →":"বাদ দিন →"}</button>`:`<button class="btn sm gold" data-pg="fin">ফলাফল দেখুন</button>`}</div></div>`;
+ p.onclick=pgClick}
+function pgMark(ok){const s=PG.st[PG.i];s.done=true;s.ok=ok;const st=S.pst;st.ans=(st.ans||0)+1;if(ok){st.right=(st.right||0)+1;st.streak=(st.streak||0)+1;st.bstreak=Math.max(st.bstreak||0,st.streak);S.mcq=(+S.mcq||0)+1}else st.streak=0;
+ if(typeof saveSoon==="function")saveSoon();if(navigator.vibrate)try{navigator.vibrate(ok?15:[30,40,30])}catch(e){}}
+function pgClick(e){const b=e.target.closest("[data-pg]");if(!b||b.disabled)return;const[a,v]=b.dataset.pg.split(/:(.*)/);const q=PG.qs[PG.i],s=PG.st[PG.i];
+ if(a==="mode"){PG.mode=v;pgNew();return practice()}
+ if(a==="pick"){if(s.done)return;s.pick=+v;pgMark(!!q.opts[+v].ok);return practice()}
+ if(a==="pk"){s.ord.push(+v);return practice()}if(a==="un"){s.ord.splice(+v,1);return practice()}if(a==="clr"){s.ord=[];return practice()}
+ if(a==="sub"){pgMark(s.ord.every((k,j)=>q.words[k]===q.words[j]));return practice()}
+ if(a==="prev"){PG.i=Math.max(0,PG.i-1);return practice()}
+ if(a==="next"){PG.i=Math.min(PG.qs.length-1,PG.i+1);return practice()}
+ if(a==="fin"){PG.fin=true;const sc=PG.st.filter(x=>x.ok).length;S.pst.play=(S.pst.play||0)+1;S.pst.best=Math.max(S.pst.best||0,sc);if(typeof saveSoon==="function")saveSoon();practice();const pt=$(".pg-head");if(pt)window.scrollTo({top:Math.max(0,pt.getBoundingClientRect().top+scrollY-70)});return}
+ if(a==="retry"){pgNew(PG.qs);return practice()}
+ if(a==="wrong"){pgNew(PG.qs.filter((q,i)=>!PG.st[i].ok).map(q=>q.kind==="order"?{...q,pool:shuf(q.pool)}:{...q,opts:shuf(q.opts)}));return practice()}
+ if(a==="new"){pgNew();return practice()}}
 /* ================= WORD SHEET ================= */
 function openWord(id){
  const w=W[id];S.tapped.add(id);let tab="m";const sv=surf(id);
@@ -856,6 +956,34 @@ function endCard(){if(!B.length)return"";const m=(TMETA&&TMETA.meta)||{},last=B[
  if(st==="done")return lock+`<div class="card endc" style="text-align:center"><b style="font-family:var(--hd)">✅ কবিতা সম্পূর্ণ</b><div class="small mute">মোট ${bn(tot||last)} বাইত — শেষ। আল্লাহ আপনার পড়া কবুল করুন।</div>${note}</div>`;
  return lock+`<div class="card" style="text-align:center"><b style="font-family:var(--hd)">পরের অংশ: বাইত ${bn(last+1)} থেকে</b><div class="small mute">শীঘ্রই আসছে</div>${note}</div>`}
 
+/* ===== পড়ার ভাসমান বোতাম (✦): যেকোনো জায়গা থেকে হরকত, অর্থ, ফন্ট, আকার, অনুশীলন, বাইতে যাওয়া ===== */
+function fabSync(){const want=S.view==="course"&&S.poem&&!window.IT_OFFLINE_LOCK;let f=document.getElementById("rfab");document.body.classList.toggle("inpoem",!!want);
+ if(!want){if(f)f.remove();const p=document.getElementById("rpanel");if(p)p.remove();return}
+ if(!f){f=document.createElement("button");f.id="rfab";f.setAttribute("aria-label","পড়ার নিয়ন্ত্রণ");f.innerHTML='<span>⚙︎</span>';f.onclick=()=>rpanel(!document.getElementById("rpanel"));document.body.appendChild(f)}
+ const p=document.getElementById("rpanel");if(p)rpanel(true)}
+function rpanel(open){let p=document.getElementById("rpanel");const f=document.getElementById("rfab");
+ if(!open){if(p){p.classList.remove("show");setTimeout(()=>p&&p.remove(),220)}if(f)f.classList.remove("on");return}
+ if(!p){p=document.createElement("div");p.id="rpanel";p.setAttribute("role","dialog");p.setAttribute("aria-label","পড়ার নিয়ন্ত্রণ");document.body.appendChild(p);requestAnimationFrame(()=>p.classList.add("show"))}else p.classList.add("show");
+ if(f)f.classList.add("on");
+ const vis=PT.filter(t=>acc(t[0])!=="off"&&!(t[0]==="variants"&&!VAR.length&&!ALT.length));
+ const F=[["Amiri","Amiri"],["Noto Naskh Arabic","Naskh"],["Scheherazade New","Scheherazade"]];
+ const tg=(k,l,ic)=>`<button class="rp-t ${S[k]?"on":""}" data-rp="sw:${k}"><span>${ic}</span>${l}</button>`;
+ p.innerHTML=`<div class="rp-h"><b>পড়ার নিয়ন্ত্রণ</b><button class="ib sm" data-rp="x" aria-label="বন্ধ">✕</button></div>
+ <div class="rp-g">${tg("harakat",S.harakat?"হরকত আছে":"হরকত লুকানো","ـَ")}${tg("gloss","শব্দের নিচে অর্থ","🔤")}${tg("blur","লুকিয়ে যাচাই","🙈")}${tg("side","পাশাপাশি মিসরা","⇆")}</div>
+ <div class="rp-l">আরবির আকার</div><div class="row rp-sz"><button class="btn sm ghost" data-rp="sz:-2">A−</button><span class="ar" style="font-size:${S.size}px;line-height:1.2">قِفَا</span><button class="btn sm ghost" data-rp="sz:2">A+</button></div>
+ <div class="rp-l">আরবি ফন্ট</div><div class="row">${F.map(x=>`<button class="chip ${S.font===x[0]?"on":""}" data-rp="fn:${x[0]}"><span style="font-family:'${x[0]}';font-size:17px">قَصِيدَة</span> ${x[1]}</button>`).join("")}</div>
+ <div class="rp-l">যেখানে যাবেন</div><div class="rp-tabs">${vis.map(t=>`<button class="${S.tab===t[0]?"on":""}" data-rp="tab:${t[0]}">${t[1]}</button>`).join("")}</div>
+ <div class="row" style="margin-top:10px;gap:6px"><input id="rpjb" type="number" inputmode="numeric" min="1" max="${B.length?B[B.length-1].n:1}" placeholder="বাইত নম্বর" style="width:120px"><button class="btn sm" data-rp="jb">বাইতে যাও</button><span style="flex:1"></span><button class="btn sm ghost" data-rp="set">আরও সেটিং</button></div>`;
+ p.onclick=e=>{const b=e.target.closest("[data-rp]");if(!b)return;const[a,v]=b.dataset.rp.split(/:(.*)/);
+  if(a==="x")return rpanel(false);
+  if(a==="sw"){S[v]=!S[v];keepScroll(render);return}
+  if(a==="sz"){S.size=Math.min(44,Math.max(22,S.size+ +v));look();rpanel(true);return}
+  if(a==="fn"){S.font=v;look();rpanel(true);return}
+  if(a==="tab"){rpanel(false);const y=window.scrollY,pt0=$(".ptabs"),top=pt0?pt0.offsetTop-60:0;S.tab=v;render();window.scrollTo({top:Math.min(y,top)});return}
+  if(a==="jb"){const n=+($("#rpjb").value||0);if(!B.some(x=>x.n===n))return toast("এই নম্বরের বাইত নেই");rpanel(false);jumpBayt(n);return}
+  if(a==="set"){rpanel(false);openSettings();return}}}
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&document.getElementById("rpanel"))rpanel(false)});
+
 /* ================= WORDS / ME / PLANS ================= */
 function vWords(M){
  if(offLock()){M.innerHTML=`<div class="sec"><h2>🔤 শব্দ</h2></div><div class="card lockbox"><div class="big">📴</div><p>${offLockMsg()}</p></div>`;return}
@@ -932,7 +1060,7 @@ function holRow(h){const multi=h.f&&h.t!==h.f;const days=h.f?diffD(h.f,h.t)+1:0;
 document.addEventListener("contextmenu",e=>{if(S.guard&&e.target.closest("#student,.sheet")&&!e.target.classList.contains("cardout"))e.preventDefault()});
 document.addEventListener("copy",e=>{if(S.guard&&e.target.closest&&e.target.closest("#student,.sheet"))e.preventDefault()});
 document.addEventListener("keydown",e=>{const k=(e.key||"").toLowerCase();if((e.ctrlKey||e.metaKey)&&((k==="p"&&S.noprint)||(k==="s"&&S.guard)))e.preventDefault();if(e.key==="Escape"){closeModal();closeSheet()}if(e.key==="Enter"&&e.target.classList&&e.target.classList.contains("w"))e.target.click()});
-function go(v){S.view=v;if(v!=="course")S.poem=false;render();window.scrollTo({top:0})}
+function go(v){memo(()=>{S.view=v;if(v!=="course")S.poem=false})}
 $("#student").addEventListener("click",e=>{
  const t=e.target.closest("button,[data-id],.lay.blur,.fc");if(!t)return;const d=t.dataset;
  if(t.classList.contains("lay")){t.classList.remove("blur");return}
@@ -945,10 +1073,10 @@ $("#student").addEventListener("click",e=>{
  if(d.pndis){try{localStorage.setItem(PNK(),String(Date.now()))}catch(e){}keepScroll(render);toast("ঠিক আছে — কয়েক দিন পর আবার মনে করিয়ে দেব");return}
  if(d.tour){tourStart(true);return}
  if(d.go){go(d.go);return}
- if(d.back){if(S.poem){S.poem=false;render()}else go("courses");window.scrollTo({top:0});return}
- if(d.course){const c=CI(d.course);if(c.acc==="soon"){S.course=d.course}S.course=d.course;S.poem=false;S.view="course";render();window.scrollTo({top:0});return}
+ if(d.back){if(S.poem)memo(()=>{S.poem=false});else go("courses");return}
+ if(d.course){memo(()=>{S.course=d.course;S.poem=false;S.view="course"});return}
  if(d.openPoem!==undefined&&offLock()){modal(`<h3>📴 অফলাইন</h3><p>${offLockMsg()}</p><div class="row"><button class="btn" onclick="this.closest('.modal').classList.remove('show')">ঠিক আছে</button></div>`);return}
- if(d.openPoem!==undefined){const p=POEMS[+d.openPoem];const a=cacc(p.acc);if(a==="lock"){modal(lockBox());return}S.course="1217";S.view="course";S.poem=true;S.tab="poem";render();window.scrollTo({top:0});return}
+ if(d.openPoem!==undefined){const p=POEMS[+d.openPoem];const a=cacc(p.acc);if(a==="lock"){modal(lockBox());return}memo(()=>{S.course="1217";S.view="course";S.poem=true;S.tab="poem"});return}
  if(d.rw){S.rtWhich=d.rw;render();return}
  if(d.rd!==undefined){S.rtDay=+d.rd;render();return}
  if(d.wk!==undefined){if(d.wk==="0"){S.rtBase=null}else S.rtBase=addD(S.rtBase,7*+d.wk);render();return}
@@ -959,7 +1087,7 @@ $("#student").addEventListener("click",e=>{
  if(d.t){toast(d.t);return}
  if(d.logout){if(window.IT_OFFLINE)return toast(OFFMSG);offClear();call("logout").finally(()=>{try{localStorage.removeItem("itk");localStorage.removeItem("itc");localStorage.removeItem(SVK())}catch(e){}location.reload()});return}
  if(d.goonline){if(!navigator.onLine)return toast("📶 এখনো ইন্টারনেট নেই — চালু করে আবার চাপুন");location.replace("./");return}
- if(d.tab){S.tab=d.tab;render();const pt=$(".ptabs");if(pt)window.scrollTo({top:pt.offsetTop-60,behavior:"smooth"});return}
+ if(d.tab){const y=window.scrollY,pt0=$(".ptabs"),top=pt0?pt0.offsetTop-60:0;S.tab=d.tab;render();window.scrollTo({top:Math.min(y,top)});return}
  if(d.id){
   if(t.classList.contains("hid")&&!t.classList.contains("peek")){t.classList.add("peek");setTimeout(()=>t.classList.remove("peek"),1600);return}
   if(!S.harakat&&!t.classList.contains("peek")){t.classList.add("peek");t.querySelector(".t").textContent=d.full;setTimeout(()=>{t.classList.remove("peek");t.querySelector(".t").textContent=d.plain},2500);return}
@@ -978,12 +1106,12 @@ $("#student").addEventListener("click",e=>{
  if(d.ans!==undefined){$("#ans"+d.ans).classList.toggle("show");return}
  if(d.fl!==undefined){const id=deck()[fi];if(d.fl==="1")S.knownW.add(id);else S.knownW.delete(id);fi++;S.view==="words"?flash($("#wp")):flash();return}
  if(d.mc){const ok=d.r==="1";t.classList.add(ok?"right":"wrong");if(ok)S.mcq++;t.parentNode.querySelectorAll("[data-mc]").forEach(b=>{b.disabled=true;if(b.dataset.r==="1")b.classList.add("right")});return}
- if(d.next){pr.q++;practice();return}
- if(d.pk!==undefined){pr.pk.push(pr.arr[+d.pk]);practice();return}
- if(d.un!==undefined){pr.pk.splice(+d.un,1);practice();return}
- if(d.chk){toast(pr.pk.join(" ")===B[0].s1.map(x=>x[0]).join(" ")?"✅ একদম ঠিক!":"ক্রম মেলেনি — আবার দেখুন");return}
- if(d.re){pr.arr=[];practice();return}
- if(d.fb!==undefined){$("#fbm").innerHTML=d.fb==="1"?"✅ ঠিক! <bdi class='ar'>مَرَاجِيعُ</bdi> — একবচন <bdi class='ar'>مَرْجُوع</bdi>":"❌ হয়নি — ছন্দ মিলিয়ে দেখুন: <bdi class='ar'>فَعُولُنْ = مَرَاجِي</bdi>";return}
+ 
+ 
+ 
+
+ 
+
 });
 $("#student").addEventListener("input",e=>{if(e.target.id==="vq"){const q=strip(e.target.value.trim().toLowerCase());document.querySelectorAll("#pane tbody tr").forEach(r=>r.style.display=!q||r.dataset.s.toLowerCase().includes(q)?"":"none")}});
 $("#sheet").addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return;const d=t.dataset;
@@ -1166,7 +1294,7 @@ function pfField(f){const[k,lab,kind]=f;const v=esc(S.pf[k]||"");
  const im=kind==="tel"?' inputmode="numeric"':kind==="email"?' inputmode="email"':"";
  return `<label class="pf-l">${esc(lab)}<input data-pf="${k}" type="${type}"${im} class="${cls}" value="${v}" maxlength="120" dir="${kind==="ar"?"rtl":"auto"}"></label>`}
 function vProfile(M){pfInit();const P=S.pf;
- const pct=profPct(P);
+ const pct=profPct(P),filled=PF_CORE.filter(k=>String(P[k]||"").trim()).length+(S.prof&&S.prof.photo?1:0);
  const dv=P.division||"",dists=(typeof BD!=="undefined"&&BD[dv])||[];
  M.innerHTML=`<div class="sec"><h2>🪪 আমার প্রোফাইল</h2><span class="small mute">নিজের তথ্য গুছিয়ে রাখো — সব ঐচ্ছিক</span></div>
  <div class="card pf-head">
@@ -1174,8 +1302,8 @@ function vProfile(M){pfInit();const P=S.pf;
   <div style="flex:1;min-width:0"><b class="hd" style="font-size:17px">${esc(P.name_bn||ME0.name||"তোমার নাম")}</b><div class="small mute en">${esc(P.sid||ME0.roll||"")}</div>
    <label class="btn sm ghost" style="margin-top:8px;display:inline-flex;gap:6px;cursor:pointer">📷 ছবি ${S.prof.photoURL?"বদলাও":"দাও"}<input type="file" accept="image/\x2a" id="pfimg" hidden></label>
    <div class="small mute" id="pfst" style="margin-top:4px">${S.prof.photo?"✓ ছবি সংরক্ষিত":""}</div></div></div>
- <div class="card pf-prog"><div class="row" style="justify-content:space-between"><b class="small">পূরণ হয়েছে</b><span class="small en">${pct}%</span></div><div class="prog" style="margin-top:6px"><i style="width:${Math.max(pct,3)}%"></i></div>
-  <div class="small mute" style="margin-top:6px">${filled?`${bn(filled)}টি ঘর পূরণ করেছ।`:"এখনো কিছু পূরণ করোনি।"} যতটুকু চাও ততটুকুই দাও — কোনো ঘর বাধ্যতামূলক নয়।</div></div>
+ <div class="card pf-prog"><div class="row" style="justify-content:space-between"><b class="small">পূরণ হয়েছে</b><span class="small en" id="pfpct">${pct}%</span></div><div class="prog" style="margin-top:6px"><i id="pfbar" style="width:${Math.max(pct,3)}%"></i></div>
+  <div class="small mute" style="margin-top:6px"><span id="pffill">${filled?`${bn(filled)}টি ঘর পূরণ করেছ।`:"এখনো কিছু পূরণ করোনি।"}</span> যতটুকু চাও ততটুকুই দাও — কোনো ঘর বাধ্যতামূলক নয়।</div></div>
  ${PF_SECS.map(s=>`<div class="card"><h3>${s[0]}</h3><div class="pf-grid">${s[1].map(pfField).join("")}</div></div>`).join("")}
  <div class="card"><h3>🏠 ঠিকানা</h3><div class="pf-grid">
    <label class="pf-l">বিভাগ<select data-pf="division" class="pf-i" id="pfdiv"><option value="">— বিভাগ —</option>${(typeof BD!=="undefined"?Object.keys(BD):[]).map(d=>`<option ${dv===d?"selected":""}>${d}</option>`).join("")}</select></label>
@@ -1190,11 +1318,14 @@ function vProfile(M){pfInit();const P=S.pf;
  if(S.prof.photo&&!S.prof.photoURL)call("profilePhotoGet",{}).then(r=>{if(r.ok&&r.photo){S.prof.photoURL=r.photo;const el=$("#pfav");if(el){el.style.backgroundImage=`url(${r.photo})`;el.classList.add("has");el.textContent=""}}});
  M.querySelectorAll("[data-pf]").forEach(x=>{const k=x.dataset.pf;
   if(k==="division")x.onchange=e=>{P.division=e.target.value;P.district="";pfDraft();vProfile(M)};
-  else if(k==="district")x.onchange=e=>{P.district=e.target.value;pfDraft()};
-  else x.oninput=e=>{P[k]=e.target.value;pfDraft()}});
+  else if(k==="district")x.onchange=e=>{P.district=e.target.value;pfDraft();pfLive(P)};
+  else x.oninput=e=>{P[k]=e.target.value;pfDraft();pfLive(P)}});
  const fi=$("#pfimg");if(fi)fi.onchange=e=>{const f=e.target.files[0];if(!f)return;if(f.size>12*1024*1024)return toast("ছবিটা অনেক বড়");const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=async()=>{const data=shrink(im,900,.85);S.prof.photoURL=data;const el=$("#pfav");if(el){el.style.backgroundImage=`url(${data})`;el.classList.add("has");el.textContent=""}const st=$("#pfst");if(st)st.textContent="সংরক্ষণ হচ্ছে…";const res=await call("profilePhoto",{photo:data});if(st)st.textContent=res.ok?"✓ ছবি সংরক্ষিত":"ছবি সংরক্ষণ হয়নি — আবার চেষ্টা করো";if(res.ok)S.prof.photo=true;else toast(res.err||"ছবি সংরক্ষণ হয়নি")};im.src=r.result};r.readAsDataURL(f)};
  const sb=$("#pfsave");if(sb)sb.onclick=async()=>{sb.disabled=true;sb.textContent="সংরক্ষণ হচ্ছে…";const res=await call("profile",{fields:P});sb.disabled=false;sb.textContent="💾 সংরক্ষণ করো";if(res.ok){S.prof.data={...P};S.prof.ver=res.ver;S.pfRestored=false;try{localStorage.removeItem(PFK())}catch(e){}toast("✅ তোমার প্রোফাইল সংরক্ষিত হয়েছে");vProfile(M)}else toast(res.err||"সংরক্ষণ হয়নি")};
  const db=$("#pfdel");if(db)db.onclick=async()=>{if(db.dataset.s!=="1"){db.dataset.s="1";db.textContent="নিশ্চিত? আবার চাপো";setTimeout(()=>{if(db.isConnected){db.dataset.s="";db.textContent="তালিকা থেকে সরাও"}},3500);return}const res=await call("profileHide",{});if(res.ok){S.prof={data:{},ver:0,photo:false,photoURL:null};S.pf=null;try{localStorage.removeItem(PFK())}catch(e){}toast("তোমার তালিকা থেকে সরানো হলো");vProfile(M)}else toast(res.err)}}
+
+/* লেখার সাথে সাথে পূরণের % বদলায় */
+function pfLive(P){const p=profPct(P),f=PF_CORE.filter(k=>String(P[k]||"").trim()).length+(S.prof&&S.prof.photo?1:0);const a=$("#pfpct"),b=$("#pfbar"),c=$("#pffill");if(a)a.textContent=p+"%";if(b)b.style.width=Math.max(p,3)+"%";if(c)c.textContent=f?`${bn(f)}টি ঘর পূরণ করেছ।`:"এখনো কিছু পূরণ করোনি।"}
 
 /* ===== সার্ভার সংযোগ (google.script.run) ===== */
 let TOKEN=null;try{TOKEN=localStorage.getItem(TKEY)}catch(e){}
@@ -1264,7 +1395,7 @@ function applyBoot(d){
  if(t){B=t.B;W=t.W;VAR=t.VAR;ALT=t.ALT||[];PARTS=t.PARTS;QS=t.QS;TMETA=t;TOK=B.flatMap(b=>[...b.s1,...b.s2])}
  S.contribs=d.contribs||[];
  const p=d.me.progress||{};if(p.cg)S.cg=p.cg;S.seen=new Set(p.seen||[]);S.knownB=new Set(p.knownB||[]);S.knownW=new Set(p.knownW||[]);S.tapped=new Set(p.tapped||[]);
- S.star=Object.fromEntries((p.star||[]).map(k=>[k,1]));S.bnotes=p.bnotes||{};S.bm=p.bm||{};S.mcq=p.mcq||0;
+ S.star=Object.fromEntries((p.star||[]).map(k=>[k,1]));S.bnotes=p.bnotes||{};S.bm=p.bm||{};S.mcq=p.mcq||0;S.pst=p.pst||{};
  if(p.ui){["theme","font","size","harakat"].forEach(k=>{if(k in p.ui)S[k]=p.ui[k]})}
  S.reports=(d.reports||[]).map(r=>({...r,me:1}));
 }
@@ -1307,7 +1438,7 @@ async function startOffline(host){
  S.saved=!!OFFB.savedAt;if(offLock()){B=[];W={};TOK=[];VAR=[];ALT=[];QS=[]}
  LASTP=progSend();host.style.display="none";$("#student").style.display="";render();navInit();
  addEventListener("online",()=>netSay("✅ ইন্টারনেট এসেছে — নতুন তথ্য পেতে 🔄 «অনলাইনে চেষ্টা করুন» চাপুন","ok"))}
-function progObj(){return{pct:B.length?Math.round(S.seen.size/B.length*100):0,seen:[...S.seen],knownB:[...S.knownB],knownW:[...S.knownW],tapped:[...S.tapped].slice(-300),star:Object.keys(S.star),bnotes:S.bnotes,bm:S.bm,mcq:S.mcq,cg:(S.cg||[]).filter(r=>r.cr!==""||r.mk!==""),ui:{theme:S.theme,font:S.font,size:S.size,harakat:S.harakat}}}
+function progObj(){return{pct:B.length?Math.round(S.seen.size/B.length*100):0,seen:[...S.seen],knownB:[...S.knownB],knownW:[...S.knownW],tapped:[...S.tapped].slice(-300),star:Object.keys(S.star),bnotes:S.bnotes,bm:S.bm,mcq:S.mcq,pst:S.pst||{},cg:(S.cg||[]).filter(r=>r.cr!==""||r.mk!==""),ui:{theme:S.theme,font:S.font,size:S.size,harakat:S.harakat}}}
 /* অগ্রগতি: ঘনঘন না পাঠিয়ে থেমে থেমে (ব্যাটারি ও নেট বাঁচে); অ্যাপ থেকে বের হলেই শেষবার পাঠানো */
 /* হঠাৎ কেটে দিলেও না হারানো: প্রতিটা বদল সঙ্গে সঙ্গে ফোনে লেখা; সার্ভার নিশ্চিত করলে চিহ্ন; পরের বার বাকি থাকলে নিজে পাঠানো */
 const PKEY=()=>"ipg:"+(ME0&&ME0.roll||""),SKEY=()=>"ipgs:"+(ME0&&ME0.roll||"");
@@ -1334,7 +1465,7 @@ async function fetchFresh(manual,bg){if(window.IT_OFFLINE){if(manual)toast(OFFMS
  const j=JSON.stringify({...d,today:""});if(j!==LASTB){LASTB=j;const keep=DIRTY?progObj():null;applyBoot(d);if(keep){restoreProg(keep)}whenIdle(()=>{if(!$("#modal").classList.contains("show")&&!$("#sheet").classList.contains("show")&&!$("#viewer").classList.contains("show")&&!(document.activeElement&&/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)))keepScroll(render)});cacheSave(d)}
  offSync();
  if(manual)toast("✅ সব তথ্য হালনাগাদ");return true}
-function restoreProg(p){S.seen=new Set(p.seen||[]);S.knownB=new Set(p.knownB||[]);S.knownW=new Set(p.knownW||[]);S.tapped=new Set(p.tapped||[]);S.star=Object.fromEntries((p.star||[]).map(k=>[k,1]));S.bnotes=p.bnotes||{};S.bm=p.bm||{};S.mcq=p.mcq||{};if(p.cg)S.cg=p.cg}
+function restoreProg(p){S.seen=new Set(p.seen||[]);S.knownB=new Set(p.knownB||[]);S.knownW=new Set(p.knownW||[]);S.tapped=new Set(p.tapped||[]);S.star=Object.fromEntries((p.star||[]).map(k=>[k,1]));S.bnotes=p.bnotes||{};S.bm=p.bm||{};S.pst=p.pst||{};S.mcq=p.mcq||{};if(p.cg)S.cg=p.cg}
 function hardRefresh(){toast("নতুন তথ্য আনা হচ্ছে…");fetchFresh(true)}
 document.addEventListener("visibilitychange",()=>{if(!document.hidden&&TOKEN&&Date.now()-LASTFETCH>120000)fetchFresh(false,true)});
 /* ===== ব্যাক বাটন: আগে খোলা জিনিস বন্ধ → আগের পাতা → হোমে থাকলে বের হওয়ার আগে জিজ্ঞাসা ===== */
@@ -1345,7 +1476,7 @@ function backStep(){
  if($("#modal").classList.contains("show")){closeModal();return true}
  if($("#sheet").classList.contains("show")){closeSheet();return true}
  if($("#viewer").classList.contains("show")){$("#viewer").classList.remove("show");$("#viewer").innerHTML="";return true}
- if(S.view==="course"){if(S.poem){S.poem=false;render()}else go("courses");window.scrollTo({top:0});return true}
+ if(S.view==="course"){if(S.poem)memo(()=>{S.poem=false});else go("courses");return true}
  if(S.view!=="home"){go("home");return true}
  return false}
 function onBack(){if(NAVH.leaving)return;if(NAVH.asking){NAVH.asking=false;NAVH.leaving=true;flushProg(true);closeModal();try{history.back()}catch(e){}return}

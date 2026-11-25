@@ -1,7 +1,7 @@
 /* অ্যাপের খোলস + অফলাইন কপি (offline.html) + ফন্ট ক্যাশ হয়। আসল তথ্য ফোনে এনক্রিপ্ট করা থাকে (localStorage «ito»), এখানে নয়। */
-const C='ittihad-app-v4',FC='ittihad-fonts-v1';
+const C='ittihad-app-v5',FC='ittihad-fonts-v2';
 const F=['./','index.html','offline.html','../config.js','icon-192.png','icon-512.png','maskable-192.png','maskable-512.png','manifest.json'];
-const FONTS='https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Anek+Bangla:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700&family=Amiri:wght@400;700&display=swap';
+const FONTS='https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Anek+Bangla:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700&family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap';
 /* ফন্ট আগেই রেখে দেওয়া — যাতে প্রথমবার নেট ছাড়া খুললেও বাংলা/আরবি ঠিকঠাক দেখায় */
 async function warmFonts(){try{const c=await caches.open(FC);const r=await fetch(FONTS,{mode:'cors'});if(!r.ok)return;const css=await r.clone().text();await c.put(FONTS,r);
  const urls=[...new Set((css.match(/url\((https:\/\/fonts\.gstatic\.com[^)]+)\)/g)||[]).map(x=>x.slice(4,-1)))];
