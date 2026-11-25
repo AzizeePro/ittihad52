@@ -31,8 +31,22 @@ var got=false;
 addEventListener('message',function(e){if(!/^https:\/\/[a-z0-9-]+\.googleusercontent\.com$/.test(e.origin))return;var d=e.data||{};
  try{if(d.type==='it-off'&&d.blob&&d.key&&d.roll){got=true;localStorage.setItem('ito',JSON.stringify({roll:String(d.roll),name:String(d.name||''),at:d.at,blob:d.blob,key:d.key}));
    var lp=JSON.parse(localStorage.getItem('ipg:'+d.roll)||'null');if(lp&&lp.p&&lp.ts&&e.source)e.source.postMessage({type:'it-offprog',roll:String(d.roll),ts:lp.ts,p:lp.p},e.origin)}
-  else if(d.type==='it-offclear'){Object.keys(localStorage).forEach(function(k){if(k==='ito'||k.indexOf('ipg:')===0)localStorage.removeItem(k)})}}catch(x){}});
-var f=document.createElement('iframe');f.src=u+'';f.allow='clipboard-write';f.title='আল-ইত্তিহাদ ৫২';f.onload=function(){setTimeout(function(){w.className='out'},2200)};document.body.appendChild(f);
+  else if(d.type==='it-offclear'){Object.keys(localStorage).forEach(function(k){if(k==='ito'||k.indexOf('ipg:')===0)localStorage.removeItem(k)});pdb(function(s){s.clear()})}
+  else if(/^it-pdf/.test(d.type))pdfMsg(d,e)}catch(x){}});
+/* অফলাইন PDF: এনক্রিপ্ট করা বাইট IndexedDB-তে (ফাইল-ম্যানেজারে দেখা যায় না), শুধু এই অ্যাপের ভেতরে খোলে */
+function pdb(fn,done){try{var r=indexedDB.open('itpdf',1);r.onupgradeneeded=function(){r.result.createObjectStore('f',{keyPath:'k'})};r.onsuccess=function(){var t=r.result.transaction('f','readwrite');var x=fn(t.objectStore('f'));t.oncomplete=function(){done&&done(x&&x.result)};t.onerror=function(){done&&done(null)}}}catch(e){done&&done(null)}}
+function pdfList(roll,cb){pdb(function(s){return s.getAll()},function(a){var it=(a||[]).filter(function(x){return x.roll===roll}).map(function(x){return{id:x.id,title:x.title,exp:x.exp,size:x.size,v:x.v,at:x.at}});
+ if(navigator.storage&&navigator.storage.estimate)navigator.storage.estimate().then(function(q){cb(it,q.usage,q.quota)}).catch(function(){cb(it)});else cb(it)})}
+function pdfMsg(d,e){var roll=String(d.roll||''),reply=function(){pdfList(roll,function(it,u,q){e.source&&e.source.postMessage({type:'it-pdflist',items:it,usage:u||0,quota:q||0,id:d.id||'',ok:true},e.origin)})};
+ if(!roll)return;
+ if(d.type==='it-pdfput'&&d.ct&&d.key&&d.id)pdb(function(s){return s.put({k:roll+'|'+d.id,roll:roll,id:String(d.id),title:String(d.title||''),exp:+d.exp||0,key:d.key,iv:d.iv,ct:d.ct,hash:d.hash,size:+d.size||0,v:String(d.v||''),at:Date.now()})},reply);
+ else if(d.type==='it-pdfrenew')pdb(function(s){var g=s.get(roll+'|'+d.id);g.onsuccess=function(){var x=g.result;if(x){x.exp=+d.exp||x.exp;s.put(x)}}},reply);
+ else if(d.type==='it-pdfdel')pdb(function(s){s.delete(roll+'|'+d.id)},reply);
+ else if(d.type==='it-pdfkeep'){var ok={};(d.allow||[]).forEach(function(i){ok[String(i)]=1});pdb(function(s){var c=s.openCursor();c.onsuccess=function(){var x=c.result;if(!x)return;if(x.value.roll===roll&&!ok[x.value.id])x.delete();x.continue()}},reply)}
+ else if(d.type==='it-pdfask')reply()}
+var f=document.createElement('iframe');f.src=u+'';f.allow='clipboard-write';f.title='আল-ইত্তিহাদ ৫২';f.onload=function(){setTimeout(function(){w.className='out'},2200)};
+/* অ্যাপকে বলে দেওয়া: PDF-রিডার (pdf.js) এখানকার vendor/ থেকে নিও — একই সংস্করণ, অফলাইনেও কাজ করে */
+addEventListener('message',function(e){if(/^https:\/\/[a-z0-9-]+\.googleusercontent\.com$/.test(e.origin)&&e.data&&e.data.type==='it-hi'&&e.source)e.source.postMessage({type:'it-shell',vendor:location.href.replace(/[^/]*([?#].*)?$/,'')+'vendor/'},e.origin)});document.body.appendChild(f);
 addEventListener('offline',function(){if(!got&&w.className!=='out')goOff()});
 /* নেট খুব দুর্বল হলে: অপেক্ষার মাঝেই অফলাইন কপি খোলার সুযোগ */
 setTimeout(function(){if(w.className!=='out'&&hasCopy()){m.innerHTML='🐢 নেট খুব ধীর — অপেক্ষা করুন, অথবা <button id="go" style="font:inherit;border:0;border-radius:10px;padding:6px 12px;background:#7a1f2b;color:#fff">📴 অফলাইন কপি খুলুন</button>';document.getElementById('go').onclick=goOff}},20000);
