@@ -605,6 +605,10 @@ input.tg:checked{background:var(--ok)}input.tg:checked::after{transform:translat
 @media print{#admin.noprt{display:none!important}}
 .cpg{display:grid;gap:2px}.cpg-h,.cpg-r{display:grid;grid-template-columns:1fr 70px 70px;align-items:center;gap:8px;padding:6px 2px}.cpg-h{font-size:12.5px;font-weight:700;color:var(--mute);border-bottom:1px solid var(--line)}.cpg-r{border-bottom:1px solid var(--line)}.cpg-r .tg{justify-self:center}.cpg-h span:not(:first-child){text-align:center}
 @media(max-width:600px){.ad-top{gap:8px 10px}.ad-top h1{flex:1;min-width:0;font-size:17px;margin:0}.ad-top h1 small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ad-top .ad-logo{width:42px;height:42px}#toApp,#adminOut{padding:6px 10px}}
+
+/* ছবির এডিটর */
+.crp{position:relative;margin:6px auto 0;border-radius:16px;overflow:hidden;background:#222;touch-action:none}.crp canvas{width:100%;height:100%;display:block;cursor:grab;touch-action:none}
+.crp-m{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 2px rgba(255,255,255,.85)}.crp-m.rd{border-radius:50%;box-shadow:0 0 0 999px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.9)}
 .lg{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at 80% 10%,rgba(226,193,113,.25),transparent 40%),linear-gradient(160deg,#7a1f2b,#3a0f17)}
 .lgc{background:var(--card);border-radius:24px;padding:26px 22px;width:min(380px,100%);display:grid;gap:10px;text-align:center;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
 .lgc h1{font-size:24px}.lgc input{width:100%;text-align:center;font-size:18px;padding:12px}.lgc .btn{width:100%;min-height:48px;font-size:16px}
@@ -1088,7 +1092,7 @@ function vWords(M){
 function vMe(M){
  const pct=B.length?Math.round(S.seen.size/B.length*100):0;
  M.innerHTML=`<div class="card prof"><div class="av ${S.prof&&S.prof.photoURL?"has":""}" style="${S.prof&&S.prof.photoURL?`background-image:url(${S.prof.photoURL})`:""}">${S.prof&&S.prof.photoURL?"":esc((ME0.name||"?")[0])}</div><div style="flex:1"><b class="hd" style="font-size:18px">${esc(ME0.name)}</b><div class="small mute">Roll <span class="en">${esc(ME0.roll)}</span> · আল-ইত্তিহাদ ৫২</div></div>${S.payOn?`<span class="pill ${isPrem(ME0)?"pro":""}">${isPrem(ME0)?"✦ Premium":"Free"}</span>`:""}</div>
- ${ME0.sw&&!window.IT_OFFLINE?`<div class="card swc"><div class="swc-i">🛡️</div><div style="flex:1"><b>${esc(ME0.rn||"স্টাফ")} হিসেবে কাজ</b><div class="small mute">এক চাপে অ্যাডমিন প্যানেলে যান — কাজ শেষে «↩ শিক্ষার্থী-অ্যাপ» চাপলে আবার এখানে</div></div><button class="btn gold" data-toadmin="1">অ্যাডমিন মোড</button></div>`:""}
+ ${ME0.sw&&!window.IT_OFFLINE?`<div class="card swc"><div class="swc-i">🛡️</div><div style="flex:1"><b>${esc(ME0.rn||"")} হিসেবে আপনার কাজ</b><div class="small mute">এক চাপে আপনার কাজের প্যানেলে যান — কাজ শেষে «↩ শিক্ষার্থী-অ্যাপ» চাপলে আবার এখানে</div></div><button class="btn gold" data-toadmin="1">🛠️ কাজের প্যানেল</button></div>`:""}
  ${acc("profile")==="ok"?`<button class="card linkc pf-link" data-go="profile"><span class="ring sm" style="--p:${Math.max(profPct(),4)}"><span class="en">${profPct()}%</span></span><span style="flex:1"><b>🪪 আমার প্রোফাইল</b><div class="small mute">${profPct()>=100?"✅ ১০০% সম্পূর্ণ — চমৎকার!":S.prof&&S.prof.ver>0?"আর কয়েকটা তথ্য দিলেই ১০০% — দেখো বা বদলাও":"নিজের তথ্য গুছিয়ে রাখো — ১০০% সম্পূর্ণ করো"}</div></span><span>→</span></button>`:""}
  ${myMarks()}
  <div class="card"><h3>📈 আমার অগ্রগতি</h3><div class="stats"><div><b>${pct}%</b><span>পড়া</span></div><div><b>${S.knownB.size}</b><span>বাইত মুখস্থ</span></div><div><b>${S.knownW.size}</b><span>শব্দ শেখা</span></div></div></div>
@@ -1380,7 +1384,7 @@ function vPhotocard(M){const P=S.pc;if(!P.name)P.name=(S.prof&&S.prof.data&&S.pr
  <div class="card"><h3>🎨 থিম <small>${bn(PCT.length)}টি</small></h3><div class="pc-sw">${PCT.map((t,i)=>`<button class="${P.t===i?"on":""}" data-pct="${i}" aria-label="${t[1]}"><i style="background:linear-gradient(135deg,${t[2]},${t[3]});box-shadow:inset 0 0 0 3px ${t[4]}55"></i><span>${t[1]}</span></button>`).join("")}</div>
  <h3 style="margin-top:14px">📐 সাজ</h3><div class="seg3 pc-lay">${PCL.map(x=>`<button class="${P.l===x[0]?"on":""}" data-pcl="${x[0]}">${x[1]}</button>`).join("")}</div></div>
  <div class="card"><h3>📷 ছবি</h3><div class="row" style="gap:8px"><label class="btn ghost sm" style="display:inline-flex;align-items:center;gap:6px;cursor:pointer">📷 ছবি দাও<input type="file" accept="image/\x2a" id="pcf" hidden></label>${S.prof&&S.prof.photoURL?`<button class="btn ghost sm" id="pcpp">🪪 প্রোফাইলের ছবি</button>`:""}</div>
- ${P.img?`<label class="small mute" style="display:block;margin-top:8px">ছবি বড়-ছোট<input type="range" id="pcz" min="1" max="2.5" step="0.05" value="${P.zoom}" style="width:100%;padding:0"></label>`:""}</div>
+ ${P.img?`<label class="small mute" style="display:block;margin-top:8px">ছবি বড়-ছোট<input type="range" id="pcz" min="1" max="3" step="0.05" value="${P.zoom}" style="width:100%;padding:0"></label><div class="row" style="gap:6px;margin-top:6px;flex-wrap:wrap"><span class="small mute" style="flex:1">ছবির ওপর আঙুল টেনে জায়গা ঠিক করুন</span><button class="btn sm ghost" id="pcrs" type="button">↺ মাঝখানে</button></div>`:""}</div>
  <div class="card"><h3>✍️ লেখা</h3>
  ${[["name","নাম — বাংলা, English বা عربي"],["id","আইডি / রোল"],["line1","বিভাগ"],["line2","ব্যাচ"],["quote","নিজের একটা কথা — বাংলা, English বা عربي (ঐচ্ছিক)"]].map(f=>`<label class="small mute" style="display:block;margin-top:8px">${f[1]}${f[0]==="quote"?`<textarea data-pcf="quote" maxlength="140" rows="2" dir="auto" class="pc-in ${pcScr(P.quote)==="ar"?"arfield":""}" style="width:100%">${esc(P.quote)}</textarea>`:`<input data-pcf="${f[0]}" value="${esc(P[f[0]])}" maxlength="${f[0]==="name"?60:70}" dir="auto" class="pc-in ${pcScr(P[f[0]])==="ar"?"arfield":""}" style="width:100%">`}</label>${f[0]==="name"&&alt.length?`<div class="row" style="gap:6px;margin-top:6px">${alt.map(x=>`<button class="chip" data-pcn="${x[0]}">${x[1]} নাম</button>`).join("")}</div>`:""}`).join("")}
  <button class="btn gold" id="pcs" style="width:100%;margin-top:12px">✅ কার্ড বানাও</button><p class="small mute" style="margin:8px 0 0">তোমার দেওয়া ছবি ও তথ্য অ্যাপের রেকর্ডে সংরক্ষিত থাকে।</p></div>
@@ -1391,8 +1395,13 @@ function vPhotocard(M){const P=S.pc;if(!P.name)P.name=(S.prof&&S.prof.data&&S.pr
  M.querySelectorAll("[data-pcl]").forEach(x=>x.onclick=()=>{P.l=x.dataset.pcl;M.querySelectorAll("[data-pcl]").forEach(y=>y.classList.toggle("on",y===x));drawCard()});
  M.querySelectorAll("[data-pcn]").forEach(x=>x.onclick=()=>{P.name=pd[x.dataset.pcn];vPhotocard(M)});
  const z=$("#pcz");if(z)z.oninput=e=>{P.zoom=+e.target.value;drawCard()};
- const pp=$("#pcpp");if(pp)pp.onclick=()=>{const im=new Image();im.onload=()=>{P.img=im;P.zoom=1;vPhotocard(M)};im.src=S.prof.photoURL};
- $("#pcf").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{P.img=im;P.zoom=1;vPhotocard(M)};im.src=r.result};r.readAsDataURL(f)};
+ const pp=$("#pcpp");if(pp)pp.onclick=()=>{const im=new Image();im.onload=()=>{P.img=im;P.zoom=1;P.ox=P.oy=0;vPhotocard(M)};im.src=S.prof.photoURL};
+ const rs=$("#pcrs");if(rs)rs.onclick=()=>{P.zoom=1;P.ox=P.oy=0;const z2=$("#pcz");if(z2)z2.value=1;drawCard()};
+ const cv0=$("#pcv");if(cv0&&!cv0.dataset.drag){cv0.dataset.drag=1;let d0=null;const pt=e=>{const t=e.touches?e.touches[0]:e;return[t.clientX,t.clientY]};
+  const st=e=>{if(!P.img||(e.touches&&e.touches.length>1))return;d0={p:pt(e),ox:P.ox||0,oy:P.oy||0}};
+  const mv=e=>{if(!d0)return;e.preventDefault();const[x,y]=pt(e),r=cv0.getBoundingClientRect(),k=2.2/Math.max(1,P.zoom);P.ox=Math.max(-1,Math.min(1,d0.ox+(x-d0.p[0])/r.width*k*2));P.oy=Math.max(-1,Math.min(1,d0.oy+(y-d0.p[1])/r.height*k*2));drawCard()};
+  const en=()=>{d0=null};cv0.addEventListener("touchstart",st,{passive:true});cv0.addEventListener("touchmove",mv,{passive:false});cv0.addEventListener("touchend",en);cv0.addEventListener("mousedown",st);addEventListener("mousemove",mv);addEventListener("mouseup",en);cv0.style.touchAction="pan-y";cv0.style.cursor="grab"}
+ $("#pcf").onchange=e=>{const f=e.target.files[0];if(!f)return;if(f.size>15e6)return toast("ছবিটা অনেক বড়");const u=URL.createObjectURL(f),im0=new Image();im0.onload=()=>{const im=new Image();im.onload=()=>{P.img=im;P.zoom=1;P.ox=P.oy=0;vPhotocard(M)};im.src=shrink(im0,1400,.88);URL.revokeObjectURL(u)};im0.src=u};
  $("#pcs").onclick=saveCard;
  M.querySelectorAll("[data-pch]").forEach(x=>x.onclick=async()=>{const r=await call("cardHide",{id:x.dataset.pch});if(!r.ok)return toast(r.err);S.cards=S.cards.filter(c=>String(c.id)!==x.dataset.pch);vPhotocard(M)})}
 let LOGO_IMG=null;
@@ -1415,7 +1424,7 @@ function pcHead(g,T,W,center){g.globalAlpha=1;g.fillStyle=T[4];g.direction="ltr"
 function pcPhoto(g,P,T,x,y,w,h,round){g.save();g.shadowColor="rgba(0,0,0,.35)";g.shadowBlur=40;g.shadowOffsetY=14;g.fillStyle=T[4];
  if(round){g.beginPath();g.arc(x+w/2,y+h/2,w/2+12,0,7);g.fill()}else{pcRR(g,x-12,y-12,w+24,h+24,40);g.fill()}g.restore();
  g.save();if(round){g.beginPath();g.arc(x+w/2,y+h/2,w/2,0,7)}else pcRR(g,x,y,w,h,30);g.clip();
- if(P.img){const im=P.img,s=Math.max(w/im.width,h/im.height)*P.zoom;g.drawImage(im,x+w/2-im.width*s/2,y+h/2-im.height*s/2,im.width*s,im.height*s)}
+ if(P.img){const im=P.img,s=Math.max(w/im.width,h/im.height)*P.zoom,dw=im.width*s,dh=im.height*s,mx=Math.max(0,(dw-w)/2),my=Math.max(0,(dh-h)/2);P.ox=Math.max(-1,Math.min(1,P.ox||0));P.oy=Math.max(-1,Math.min(1,P.oy||0));g.drawImage(im,x+w/2-dw/2+P.ox*mx,y+h/2-dh/2+P.oy*my,dw,dh)}
  else{g.fillStyle="rgba(255,255,255,.16)";g.fillRect(x,y,w,h);g.fillStyle=T[5];g.globalAlpha=.8;g.font="600 38px 'Noto Sans Bengali'";g.textAlign="center";g.direction="ltr";g.fillText("তোমার ছবি",x+w/2,y+h/2+12)}g.restore()}
 function pcId(g,T,id,x,y,align){if(!id)return;g.direction="ltr";g.font="600 30px 'Plus Jakarta Sans',sans-serif";const t="ID · "+id,w=g.measureText(t).width+48,x0=align==="center"?x-w/2:x;
  g.save();g.globalAlpha=.16;g.fillStyle=T[4];pcRR(g,x0,y-38,w,56,28);g.fill();g.globalAlpha=1;g.strokeStyle=T[4];g.lineWidth=2;pcRR(g,x0,y-38,w,56,28);g.stroke();g.restore();g.fillStyle=T[4];g.textAlign="left";g.fillText(t,x0+24,y)}
@@ -1466,7 +1475,7 @@ document.addEventListener("click",e=>{const b=e.target.closest("[data-msgopen]")
 
 /* ===== 🛡️ এক অ্যাপে দুই কাজ: শিক্ষার্থী → অ্যাডমিন ===== */
 async function toAdminMode(b){if(b){b.disabled=true;b.textContent="খুলছে…"}const r=await call("toAdmin",{}).catch(()=>({ok:false,err:"সংযোগ পাওয়া যায়নি"}));
- if(!r.ok){if(b){b.disabled=false;b.textContent="অ্যাডমিন মোড"}return toast("❌ "+(r.err||"হয়নি"))}
+ if(!r.ok){if(b){b.disabled=false;b.textContent="🛠️ কাজের প্যানেল"}return toast("❌ "+(r.err||"হয়নি"))}
  try{localStorage.setItem("iak",r.token)}catch(e){}switchTo("admin",r.url,r.token)}
 document.addEventListener("click",e=>{const b=e.target.closest("[data-toadmin]");if(b){e.stopPropagation();toAdminMode(b)}},true);
 /* ===== 👤 হেডারের কোণে নিজের ছবি (দিলে) — একবার এনে এই ফোনে রাখা ===== */
@@ -1476,6 +1485,32 @@ function photoTop(){if(!S.prof||!S.prof.photo||window.IT_OFFLINE&&!S.prof.photoU
  if(!S.prof.photoURL){try{const c=JSON.parse(localStorage.getItem(PHK())||"null");if(c&&c.v===v&&/^data:image\//.test(c.u)){S.prof.photoURL=c.u;return avTop()}}catch(e){}
   if(window.IT_OFFLINE||photoTop.busy)return;photoTop.busy=1;call("profilePhotoGet",{}).then(r=>{photoTop.busy=0;if(r.ok&&r.photo){S.prof.photoURL=r.photo;try{localStorage.setItem(PHK(),JSON.stringify({v,u:r.photo}))}catch(e){}avTop()}}).catch(()=>{photoTop.busy=0})}else avTop()}
 function avTop(){const t=$("#top");if(!t||S.view==="course"||!S.prof||!S.prof.photoURL)return;let a=t.querySelector(".avtop");if(!a){a=document.createElement("button");a.className="avtop";a.setAttribute("aria-label","আমি");a.dataset.go="me";t.appendChild(a)}a.style.backgroundImage=`url(${S.prof.photoURL})`}
+
+/* ===== ✂️ ছবি ঠিক করার এডিটর: আঙুলে টেনে সরানো, পিঞ্চ/স্লাইডারে ছোট-বড়, গোল বা চৌকো ফ্রেম → নির্দিষ্ট মাপের ছোট JPEG ===== */
+function cropEditor(src,o){o=o||{};return new Promise(done=>{if(!src)return done(null);const im=new Image();im.crossOrigin="anonymous";im.onerror=()=>{toast("ছবি খোলা যায়নি");done(null)};
+ im.onload=()=>{let z=1,ox=0,oy=0;const V=Math.min(300,innerWidth-60);
+  modal(`<h3>${esc(o.title||"✏️ ছবি ঠিক করুন")}</h3><div class="crp" style="width:${V}px;height:${V}px"><canvas id="crc" width="${V*2}" height="${V*2}"></canvas><div class="crp-m ${o.round?"rd":""}"></div></div>
+  <label class="small mute" style="display:block;margin-top:10px">ছোট-বড়<input type="range" id="crz" min="1" max="4" step="0.02" value="1" style="width:100%;padding:0"></label>
+  <p class="small mute" style="margin:4px 0 0;text-align:center">ছবির ওপর আঙুল টেনে জায়গা ঠিক করুন · দুই আঙুলে ছোট-বড়</p>
+  <div class="row" style="justify-content:center;gap:8px;margin-top:12px"><button class="btn ghost" id="crx">বাতিল</button><button class="btn ghost" id="crr">↺</button><button class="btn gold" id="crk">✓ সংরক্ষণ</button></div>`);
+  const cv=$("#crc"),g=cv.getContext("2d"),W=cv.width,base=Math.max(W/im.width,W/im.height);
+  const lim=()=>{const s=base*z,mx=Math.max(0,(im.width*s-W)/2),my=Math.max(0,(im.height*s-W)/2);ox=Math.max(-mx,Math.min(mx,ox));oy=Math.max(-my,Math.min(my,oy))};
+  const draw=(c,Wd)=>{const k=Wd/W,s=base*z*k;c.fillStyle="#fff";c.fillRect(0,0,Wd,Wd);c.drawImage(im,Wd/2-im.width*s/2+ox*k,Wd/2-im.height*s/2+oy*k,im.width*s,im.height*s)};
+  const paint=()=>{lim();draw(g,W)};paint();
+  const zr=$("#crz");zr.oninput=()=>{z=+zr.value;paint()};
+  let d=null,pin=null;const P0=e=>[e.clientX,e.clientY],K=()=>W/cv.getBoundingClientRect().width;
+  cv.addEventListener("pointerdown",e=>{cv.setPointerCapture(e.pointerId);d={p:P0(e),ox,oy}});
+  cv.addEventListener("pointermove",e=>{if(!d||pin)return;const[x,y]=P0(e);ox=d.ox+(x-d.p[0])*K();oy=d.oy+(y-d.p[1])*K();paint()});
+  cv.addEventListener("pointerup",()=>{d=null});
+  const dist=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY);
+  cv.addEventListener("touchstart",e=>{if(e.touches.length===2){pin={d:dist(e.touches),z};d=null}},{passive:true});
+  cv.addEventListener("touchmove",e=>{if(pin&&e.touches.length===2){e.preventDefault();z=Math.max(1,Math.min(4,pin.z*dist(e.touches)/pin.d));zr.value=z;paint()}},{passive:false});
+  cv.addEventListener("touchend",e=>{if(e.touches.length<2)pin=null});
+  cv.addEventListener("wheel",e=>{e.preventDefault();z=Math.max(1,Math.min(4,z*(e.deltaY<0?1.06:.94)));zr.value=z;paint()},{passive:false});
+  $("#crr").onclick=()=>{z=1;ox=oy=0;zr.value=1;paint()};
+  $("#crx").onclick=()=>{closeModal();done(null)};
+  $("#crk").onclick=()=>{const out=o.out||640,c=document.createElement("canvas");c.width=c.height=out;draw(c.getContext("2d"),out);closeModal();done(c.toDataURL("image/jpeg",.82))}};
+ im.src=typeof src==="string"?src:src.src})}
 
 /* বাংলাদেশের ৮ বিভাগ ও ৬৪ জেলা (বিভাগ → জেলা) */
 const BD={
@@ -1526,7 +1561,7 @@ function vProfile(M){pfInit();const P=S.pf;
  <div class="card pf-head">
   <div class="pf-av ${S.prof.photoURL?"has":""}" id="pfav" style="${S.prof.photoURL?`background-image:url(${S.prof.photoURL})`:""}">${S.prof.photoURL?"":"📷"}</div>
   <div style="flex:1;min-width:0"><b class="hd" style="font-size:17px">${esc(P.name_bn||ME0.name||"তোমার নাম")}</b><div class="small mute en">${esc(P.sid||ME0.roll||"")}</div>
-   <label class="btn sm ghost" style="margin-top:8px;display:inline-flex;gap:6px;cursor:pointer">📷 ছবি ${S.prof.photoURL?"বদলাও":"দাও"}<input type="file" accept="image/\x2a" id="pfimg" hidden></label>
+   <div class="row" style="gap:6px;margin-top:8px;flex-wrap:wrap"><label class="btn sm ghost" style="display:inline-flex;gap:6px;cursor:pointer">📷 ছবি ${S.prof.photoURL?"বদলাও":"দাও"}<input type="file" accept="image/\x2a" id="pfimg" hidden></label>${S.prof.photoURL?`<button class="btn sm ghost" id="pfedit" type="button">✏️ ছবি ঠিক করুন</button>`:""}</div>
    <div class="small mute" id="pfst" style="margin-top:4px">${S.prof.photo?"✓ ছবি সংরক্ষিত":""}</div></div></div>
  <div class="card pf-prog"><div class="row" style="justify-content:space-between"><b class="small">পূরণ হয়েছে</b><span class="small en" id="pfpct">${pct}%</span></div><div class="prog" style="margin-top:6px"><i id="pfbar" style="width:${Math.max(pct,3)}%"></i></div>
   <div class="small mute" style="margin-top:6px"><span id="pffill">${filled?`${bn(filled)}টি ঘর পূরণ করেছ।`:"এখনো কিছু পূরণ করোনি।"}</span> যতটুকু চাও ততটুকুই দাও — কোনো ঘর বাধ্যতামূলক নয়।</div></div>
@@ -1546,7 +1581,8 @@ function vProfile(M){pfInit();const P=S.pf;
   if(k==="division")x.onchange=e=>{P.division=e.target.value;P.district="";pfDraft();vProfile(M)};
   else if(k==="district")x.onchange=e=>{P.district=e.target.value;pfDraft();pfLive(P)};
   else x.oninput=e=>{P[k]=e.target.value;pfDraft();pfLive(P)}});
- const fi=$("#pfimg");if(fi)fi.onchange=e=>{const f=e.target.files[0];if(!f)return;if(f.size>12*1024*1024)return toast("ছবিটা অনেক বড়");const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=async()=>{const data=shrink(im,640,.8);   /* ছোট ফাইল (~৫০–৮০KB): কম ডেটা, কম Drive-জায়গা */S.prof.photoURL=data;const el=$("#pfav");if(el){el.style.backgroundImage=`url(${data})`;el.classList.add("has");el.textContent=""}const st=$("#pfst");if(st)st.textContent="সংরক্ষণ হচ্ছে…";const res=await call("profilePhoto",{photo:data});if(st)st.textContent=res.ok?"✓ ছবি সংরক্ষিত":"ছবি সংরক্ষণ হয়নি — আবার চেষ্টা করো";if(res.ok)S.prof.photo=true;else toast(res.err||"ছবি সংরক্ষণ হয়নি")};im.src=r.result};r.readAsDataURL(f)};
+ const pe=$("#pfedit");if(pe)pe.onclick=()=>{const src=S.pfOrig||S.prof.photoURL;cropEditor(src,{round:true,out:640,title:"✏️ প্রোফাইলের ছবি ঠিক করুন"}).then(async data=>{if(!data)return;S.prof.photoURL=data;const el=$("#pfav");if(el)el.style.backgroundImage=`url(${data})`;const st=$("#pfst");if(st)st.textContent="সংরক্ষণ হচ্ছে…";const r=await call("profilePhoto",{photo:data});if(st)st.textContent=r.ok?"✓ ছবি সংরক্ষিত":"সংরক্ষণ হয়নি — আবার চেষ্টা করুন";if(r.ok){try{localStorage.removeItem(PHK())}catch(e){}if(typeof avTop==="function")avTop()}})};
+ const fi=$("#pfimg");if(fi)fi.onchange=e=>{const f=e.target.files[0];if(!f)return;if(f.size>12*1024*1024)return toast("ছবিটা অনেক বড়");const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=async()=>{S.pfOrig=im;const data=shrink(im,640,.8);   /* ছোট ফাইল (~৫০–৮০KB): কম ডেটা, কম Drive-জায়গা */S.prof.photoURL=data;const el=$("#pfav");if(el){el.style.backgroundImage=`url(${data})`;el.classList.add("has");el.textContent=""}const st=$("#pfst");if(st)st.textContent="সংরক্ষণ হচ্ছে…";const res=await call("profilePhoto",{photo:data});if(st)st.textContent=res.ok?"✓ ছবি সংরক্ষিত":"ছবি সংরক্ষণ হয়নি — আবার চেষ্টা করো";if(res.ok){try{localStorage.removeItem(PHK())}catch(e){}if(!$("#pfedit")){const row=$("#pfimg").closest(".row");if(row){const b=document.createElement("button");b.className="btn sm ghost";b.id="pfedit";b.type="button";b.textContent="✏️ ছবি ঠিক করুন";row.appendChild(b);b.onclick=()=>cropEditor(S.pfOrig||S.prof.photoURL,{round:true,out:640,title:"✏️ প্রোফাইলের ছবি ঠিক করুন"}).then(async data=>{if(!data)return;S.prof.photoURL=data;const el=$("#pfav");if(el)el.style.backgroundImage=`url(${data})`;const r=await call("profilePhoto",{photo:data});toast(r.ok?"✓ ছবি সংরক্ষিত":"সংরক্ষণ হয়নি");try{localStorage.removeItem(PHK())}catch(e){}if(typeof avTop==="function")avTop()})}}}if(res.ok)S.prof.photo=true;else toast(res.err||"ছবি সংরক্ষণ হয়নি")};im.src=r.result};r.readAsDataURL(f)};
  const sb=$("#pfsave");if(sb)sb.onclick=async()=>{sb.disabled=true;sb.textContent="সংরক্ষণ হচ্ছে…";const res=await call("profile",{fields:P});sb.disabled=false;sb.textContent="💾 সংরক্ষণ করো";if(res.ok){S.prof.data={...P};S.prof.ver=res.ver;S.pfRestored=false;try{localStorage.removeItem(PFK())}catch(e){}toast("✅ তোমার প্রোফাইল সংরক্ষিত হয়েছে");vProfile(M)}else toast(res.err||"সংরক্ষণ হয়নি")};
  const db=$("#pfdel");if(db)db.onclick=async()=>{if(db.dataset.s!=="1"){db.dataset.s="1";db.textContent="নিশ্চিত? আবার চাপো";setTimeout(()=>{if(db.isConnected){db.dataset.s="";db.textContent="তালিকা থেকে সরাও"}},3500);return}const res=await call("profileHide",{});if(res.ok){S.prof={data:{},ver:0,photo:false,photoURL:null};S.pf=null;try{localStorage.removeItem(PFK())}catch(e){}toast("তোমার তালিকা থেকে সরানো হলো");vProfile(M)}else toast(res.err)}}
 
@@ -1599,7 +1635,7 @@ const digits=(el,max)=>{el.addEventListener("input",()=>{const v=el.value.replac
 function loginView(host,title,sub,onDone,isAdmin){
  const L={step:"roll",roll:"",name:"",need:false};
  const draw=(err,okmsg)=>{host.style.display="";host.innerHTML=`<div class="lg"><form class="lgc" autocomplete="on" onsubmit="return false"><div class="lgo"><img src="${LOGO}" alt=""></div><h1>${title}</h1><p class="mute small" style="margin-top:-6px">${sub}</p>
- ${L.step==="roll"?`<label class="lbl2" for="lr">স্টুডেন্ট আইডি</label><input id="lr" inputmode="numeric" pattern="[0-9]*" maxlength="12" autocomplete="username" value="${esc(L.roll)}" placeholder="যেমন 2601071001"><button class="btn" id="lb" type="submit" disabled>পরের ধাপ →</button>${isAdmin?`<button class="lnk" id="los" type="button">প্রথমবার? মালিকের অ্যাকাউন্ট তৈরি</button>`:""}`
+ ${L.step==="roll"?`<label class="lbl2" for="lr">স্টুডেন্ট আইডি</label><input id="lr" inputmode="numeric" pattern="[0-9]*" maxlength="12" autocomplete="username" value="${esc(L.roll)}" placeholder="যেমন 2601071001"><button class="btn" id="lb" type="submit" disabled>পরের ধাপ →</button>${isAdmin?`<button class="lnk" id="los" type="button" hidden>প্রথমবার? মালিকের অ্যাকাউন্ট তৈরি</button>`:""}`
  :L.step==="otp"?`<div class="who"><b>${esc(L.name)}</b><span class="en">${esc(L.roll)}</span></div><p class="small" style="margin:0">🔐 নতুন ডিভাইস — ${L.mail?`<b class="en">${esc(L.mail)}</b>-এ`:"আপনার ইমেইলে"} পাঠানো ৬ অঙ্কের কোড দিন (১০ মিনিট চলবে)।</p><input id="lo" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••" style="letter-spacing:.4em;text-align:center"><button class="btn" id="lb" type="submit" disabled>যাচাই করে ঢুকুন</button><button class="lnk" id="lback" type="button">← পেছনে</button>`
  :L.step==="owner"?`<p class="small">Ittihad Data শিটের <b>Settings</b> ট্যাবে <b>setup_code</b>-এর ৬ অঙ্কের কোড দিন।</p><input id="oc" placeholder="সেটআপ কোড" inputmode="numeric" maxlength="6"><input id="or" placeholder="আপনার আইডি" inputmode="numeric" maxlength="12"><input id="on" placeholder="আপনার নাম" maxlength="60"><input id="op" type="password" inputmode="numeric" maxlength="6" placeholder="নতুন PIN (৪–৬ অঙ্ক)"><button class="btn" id="ob" type="submit">তৈরি করুন</button><button class="lnk" id="lback" type="button">← ফিরে যান</button>`
  :`<div class="who"><b>${esc(L.name)}</b><span class="en">${esc(L.roll)}</span></div>${L.need?`<p class="small" style="margin:0">প্রথমবার ঢুকছেন — নিজের একটা PIN ঠিক করুন (৪–৬ অঙ্ক)। মনে রাখবেন, কাউকে বলবেন না।</p>`:""}<input id="lp" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="${L.need?"new-password":"current-password"}" placeholder="${L.need?"নতুন PIN":"PIN"}">${L.need?`<input id="lp2" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="new-password" placeholder="PIN আবার লিখুন">`:""}<button class="btn" id="lb" type="submit" disabled>${L.need?"PIN ঠিক করে ঢুকুন":"ঢুকুন"}</button><button class="lnk" id="lback" type="button">← অন্য আইডি</button>`}
@@ -1611,7 +1647,7 @@ function loginView(host,title,sub,onDone,isAdmin){
  host.querySelectorAll("input").forEach(i=>{i.addEventListener("vchk",()=>{if(lb)lb.disabled=!valid()});i.addEventListener("keydown",e=>{if(e.key==="Enter"&&lb&&!lb.disabled){e.preventDefault();lb.click()}})});
  if(lb)lb.disabled=!valid();
  if(q("#lback"))q("#lback").onclick=()=>{L.step="roll";draw()};
- if(q("#los"))q("#los").onclick=()=>{L.step="owner";draw()};
+ if(q("#los")){if(!loginView.own)rpc("adm","hasOwner",{}).then(r=>{loginView.own=r&&r.ok?(r.owner?1:2):0;const b=q("#los");if(b)b.hidden=loginView.own!==2}).catch(()=>{});else q("#los").hidden=loginView.own!==2}if(q("#los"))q("#los").onclick=()=>{L.step="owner";draw()};
  if(q("#ob"))q("#ob").onclick=async()=>{busy(q("#ob"));const r=await withTimeout(rpc("adm","owner-setup",{code:q("#oc").value,roll:q("#or").value,name:q("#on").value,pin:q("#op").value}),30000);if(!r.ok)return draw(r.err);L.roll=q("#or")?q("#or").value:"";L.step="roll";draw("","✅ মালিকের অ্যাকাউন্ট তৈরি হয়েছে — এবার আইডি দিয়ে ঢুকুন")};
  if(L.step==="roll"){lb.onclick=async()=>{L.roll=q("#lr").value;busy(lb,"দেখা হচ্ছে…");const r=await withTimeout(rpc(isAdmin?"adm":"api","check",{roll:L.roll}),25000);if(!r.ok)return draw(r.err);L.name=r.name;L.need=r.needPin;L.step="pin";draw();setTimeout(()=>q("#lp")&&q("#lp").focus(),60)};setTimeout(()=>q("#lr")&&q("#lr").focus(),60)}
  if(L.step==="pin")lb.onclick=async()=>{const p=q("#lp").value;if(L.need&&p!==q("#lp2").value)return draw("দুটো PIN মেলেনি");busy(lb,"ঢুকছি…");const r=await withTimeout(rpc(isAdmin?"adm":"api","login",{roll:L.roll,pin:p,device:devId(),dinfo:await devInfo()}),30000);if(r.otp){L.pin=p;L.mail=r.mail||"";L.step="otp";draw("",r.err);setTimeout(()=>q("#lo")&&q("#lo").focus(),60);return}if(!r.ok)return draw(r.err);setTok(r.token);onDone()};
