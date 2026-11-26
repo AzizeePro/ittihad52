@@ -737,7 +737,7 @@ const UIF={bn:[["Noto Sans Bengali","নোটো সান্স"],["Hind Silig
  ar:[["Noto Naskh Arabic","نسخ"],["Cairo","القاهرة"],["Tajawal","تجوال"],["Amiri","أميري"]]};
 const UIF_HAVE={"Noto Sans Bengali":1,"Anek Bangla":1,"Plus Jakarta Sans":1,"Amiri":1,"Noto Naskh Arabic":1};
 function uiFont(l){l=l||LANG;let f="";try{f=localStorage.getItem("itfont:"+l)||""}catch(e){}return UIF[l].some(x=>x[0]===f)?f:UIF[l][0][0]}
-function fontLoad(f){if(UIF_HAVE[f]||document.getElementById("gf-"+f.replace(/\s/g,"")))return;const k=document.createElement("link");k.rel="stylesheet";k.id="gf-"+f.replace(/\s/g,"");k.href="https://fonts.googleapis.com/css2?family="+f.replace(/\s/g,"+")+":wght@400;500;600;700&display=swap";document.head.appendChild(k)}
+function fontLoad(f){if(UIF_HAVE[f]||document.getElementById("gf-"+f.replace(/\s/g,"")))return;const k=document.createElement("link");k.rel="stylesheet";k.id="gf-"+f.replace(/\s/g,"");k.href="https:\/\/fonts.googleapis.com/css2?family="+f.replace(/\s/g,"+")+":wght@400;500;600;700&display=swap";document.head.appendChild(k)}
 function langApply(){const h=document.documentElement,f=uiFont();fontLoad(f);h.lang=LANG;h.dir=LANG==="ar"?"rtl":"ltr";
  document.body.classList.remove("lang-bn","lang-en","lang-ar");document.body.classList.add("lang-"+LANG);
  const fb=LANG==="ar"?"'Noto Naskh Arabic','Noto Sans Bengali',system-ui,sans-serif":"'Plus Jakarta Sans','Noto Sans Bengali','Hind Siliguri',system-ui,sans-serif";
@@ -1667,7 +1667,7 @@ function blissLoad(){if(BA)return Promise.resolve(BA);if(BAP)return BAP;
   if(!a){if(window.IT_OFFLINE)throw new Error("off");const r=await call("blissAssets",{});if(!r||!r.ok)throw new Error((r&&r.err)||"x");a=r.a;try{localStorage.setItem("itbliss",JSON.stringify(a))}catch(e){}}
   const img=u=>new Promise((ok,no)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=no;i.src=u});
   const [st,it,cu]=await Promise.all([img(a.sticker),img(a.ittihad),img(a.cu)]);
-  try{const f=["700 italic 60px 'Playfair Display'","600 30px 'Playfair Display'","700 40px 'Caveat'"];if(!document.getElementById("gf-bliss")){const k=document.createElement("link");k.rel="stylesheet";k.id="gf-bliss";k.href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=Caveat:wght@600;700&display=swap";document.head.appendChild(k)}
+  try{const f=["700 italic 60px 'Playfair Display'","600 30px 'Playfair Display'","700 40px 'Caveat'"];if(!document.getElementById("gf-bliss")){const k=document.createElement("link");k.rel="stylesheet";k.id="gf-bliss";k.href="https:\/\/fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=Caveat:wght@600;700&display=swap";document.head.appendChild(k)}
    await Promise.race([Promise.all(f.map(x=>document.fonts.load(x))),new Promise(r=>setTimeout(r,2500))])}catch(e){}
   BA={st,it,cu,tint:{}};return BA})();
  BAP.catch(()=>{BAP=null});return BAP}
