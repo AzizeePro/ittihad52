@@ -45,6 +45,10 @@ function pdfMsg(d,e){var roll=String(d.roll||''),reply=function(){pdfList(roll,f
  else if(d.type==='it-pdfkeep'){var ok={};(d.allow||[]).forEach(function(i){ok[String(i)]=1});pdb(function(s){var c=s.openCursor();c.onsuccess=function(){var x=c.result;if(!x)return;if(x.value.roll===roll&&!ok[x.value.id])x.delete();x.continue()}},reply)}
  else if(d.type==='it-pdfask')reply()}
 var f=document.createElement('iframe');f.src=u+'';f.allow='clipboard-write';f.title='আল-ইত্তিহাদ ৫২';f.onload=function(){setTimeout(function(){w.className='out'},2200)};
+/* এক অ্যাপে দুই কাজ: শিক্ষার্থী-অ্যাপ ⇄ অ্যাডমিন — ফ্রেম বদলায়, নতুন টোকেন অ্যাডমিন পাতাকে হাতে দেয় */
+var pendTok='';addEventListener('message',function(e){if(!/^https:\/\/[a-z0-9-]+\.googleusercontent\.com$/.test(e.origin)||!e.data)return;var d=e.data;
+ if(d.type==='it-go'&&(d.to==='admin'||d.to==='app')){pendTok=String(d.tok||'').slice(0,200);f.src=u+(d.to==='admin'?'?admin=1':'');document.title=d.to==='admin'?'ইত্তিহাদ অ্যাডমিন':'আল-ইত্তিহাদ ৫২'}
+ else if(d.type==='it-hi'&&d.kind==='admin'&&e.source){e.source.postMessage({type:'it-tok',tok:pendTok},e.origin);pendTok=''}});
 /* অ্যাপকে বলে দেওয়া: PDF-রিডার (pdf.js) এখানকার vendor/ থেকে নিও — একই সংস্করণ, অফলাইনেও কাজ করে */
 addEventListener('message',function(e){if(/^https:\/\/[a-z0-9-]+\.googleusercontent\.com$/.test(e.origin)&&e.data&&e.data.type==='it-hi'&&e.source)e.source.postMessage({type:'it-shell',vendor:location.href.replace(/[^/]*([?#].*)?$/,'')+'vendor/'},e.origin)});document.body.appendChild(f);
 addEventListener('offline',function(){if(!got&&w.className!=='out')goOff()});

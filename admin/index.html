@@ -23,6 +23,10 @@
 if(!u){document.getElementById('m').textContent='অ্যাপ এখনো চালু হয়নি';return}
 if(!navigator.onLine){document.getElementById('m').textContent='📶 ইন্টারনেট নেই — সংযোগ পেলে নিজে থেকেই খুলবে';addEventListener('online',function(){location.reload()});return}
 var f=document.createElement('iframe');f.src=u+'?admin=1';f.allow='clipboard-write';f.title='ইত্তিহাদ অ্যাডমিন';f.onload=function(){setTimeout(function(){w.className='out'},2200)};document.body.appendChild(f);
+/* এক অ্যাপে দুই কাজ: শিক্ষার্থী-অ্যাপ ⇄ অ্যাডমিন — ফ্রেম বদলায়, নতুন টোকেন অ্যাডমিন পাতাকে হাতে দেয় */
+var pendTok='';addEventListener('message',function(e){if(!/^https:\/\/[a-z0-9-]+\.googleusercontent\.com$/.test(e.origin)||!e.data)return;var d=e.data;
+ if(d.type==='it-go'&&(d.to==='admin'||d.to==='app')){pendTok=String(d.tok||'').slice(0,200);f.src=u+(d.to==='admin'?'?admin=1':'');document.title=d.to==='admin'?'ইত্তিহাদ অ্যাডমিন':'আল-ইত্তিহাদ ৫২'}
+ else if(d.type==='it-hi'&&d.kind==='admin'&&e.source){e.source.postMessage({type:'it-tok',tok:pendTok},e.origin);pendTok=''}});
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(function(){});
 })();
 </script>
